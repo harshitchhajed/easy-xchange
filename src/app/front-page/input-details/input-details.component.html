@@ -1,0 +1,28 @@
+<div>
+    <mat-form-field appearance="outline" class="search-entry">
+        <mat-label>What are you looking for?</mat-label>
+        <input matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="date-entry">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- add ngIf here -->
+    <mat-form-field appearance="outline" class="date-entry">   
+        <mat-label>Check out</mat-label>
+        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker2">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="search-button">
+        <mat-chip-list>
+            <mat-chip color="primary" selected>Search</mat-chip>
+        </mat-chip-list>
+    </mat-form-field>
+
+</div>

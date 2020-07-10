@@ -1,0 +1,16 @@
+mat-form-field {
+  padding: 1%;
+}
+
+mat-form-field.search-entry {
+  width: 30%;
+}
+
+mat-form-field.date-entry {
+  width: 20%;
+}
+
+mat-form-field.search-button {
+  width: 20%;
+  align-items: center;
+}
