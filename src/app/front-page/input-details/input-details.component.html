@@ -11,7 +11,7 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <!-- add ngIf here -->
+    <!-- TODO: add ngIf here -->
     <mat-form-field appearance="outline" class="date-entry">   
         <mat-label>Check out</mat-label>
         <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker2">
@@ -19,9 +19,10 @@
         <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="search-button">
+    <mat-form-field appearance="none" class="search-button">
         <mat-chip-list>
-            <mat-chip color="primary" selected>Search</mat-chip>
+            <!-- TODO: add mat search icon here -->
+            <mat-chip color="primary" selected>Search </mat-chip>
         </mat-chip-list>
     </mat-form-field>
 

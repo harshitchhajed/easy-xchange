@@ -3,7 +3,7 @@ mat-form-field {
 }
 
 mat-form-field.search-entry {
-  width: 30%;
+  width: 50%;
 }
 
 mat-form-field.date-entry {
@@ -11,6 +11,7 @@ mat-form-field.date-entry {
 }
 
 mat-form-field.search-button {
-  width: 20%;
+  width: 10%;
   align-items: center;
+  margin: 0px;
 }
