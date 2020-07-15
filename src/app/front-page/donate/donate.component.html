@@ -1,1 +1,24 @@
-<p>donate works!</p>
+<div class="contain">
+    <div class="inner-container">
+        <h1 class=donate-title>
+            <div>For things that no longer spark joy</div>
+        </h1>
+        <div class="donate-paragraph">
+            Donate the things you no longer need to some of the top charities around you. 
+            Help thousands of people in need - without leaving your home.
+        </div>
+        <mat-grid-list cols="5" rowHeight="200px">
+            <mat-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">
+                <a [href]="tile.link" target="_blank">
+                    <mat-card class="donate-card">
+                        <img mat-card-image [src]="tile.src" [alt]="tile.text" class="donate-image">
+                    </mat-card>
+                </a>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

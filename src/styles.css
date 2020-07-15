@@ -3,9 +3,6 @@
 /* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
 
 html, body { height: 100%; }
-body { 
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 3%;
+body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
