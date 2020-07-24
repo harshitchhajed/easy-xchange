@@ -17,11 +17,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { FrontPageComponent } from './front-page/front-page.component';
 import { InputDetailsComponent } from './front-page/input-details/input-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DonateComponent } from './front-page/donate/donate.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { DonateComponent } from './front-page/donate/donate.component';
     HeaderComponent,
     FrontPageComponent,
     InputDetailsComponent,
-    DonateComponent
+    DonateComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { DonateComponent } from './front-page/donate/donate.component';
     MatNativeDateModule,
     MatTabsModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

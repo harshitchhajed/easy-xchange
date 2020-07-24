@@ -8,3 +8,11 @@ mat-chip.signup {
     margin-left: 5%;
     margin-right: 5%;
 }
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+/* .nav-link {
+    color: black;
+} */
