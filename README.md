@@ -8,7 +8,7 @@ Run `npm install` before working with this project to install all the needed dep
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve --ssl` for a dev server. Navigate to `https://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
