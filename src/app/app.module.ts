@@ -18,12 +18,14 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { FrontPageComponent } from './front-page/front-page.component';
 import { InputDetailsComponent } from './front-page/input-details/input-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DonateComponent } from './front-page/donate/donate.component';
 import { FooterComponent } from './footer/footer.component';
+import { DialogPopupComponent } from './header/dialog-popup/dialog-popup.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { FooterComponent } from './footer/footer.component';
     FrontPageComponent,
     InputDetailsComponent,
     DonateComponent,
-    FooterComponent
+    FooterComponent,
+    DialogPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { FooterComponent } from './footer/footer.component';
     MatTabsModule,
     MatGridListModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
