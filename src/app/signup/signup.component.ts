@@ -3,6 +3,7 @@ import { SocialAuthService, SocialUser } from 'angularx-social-login';
 
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 declare var FB: any;
+declare var gapi: any;
 
 @Component({
   selector: 'app-signup',
@@ -70,7 +71,7 @@ export class SignupComponent implements OnInit {
    });
   }
 
-  onSignIn(googleUser: any) {
+  onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     console.log('hello world');
     const profile = googleUser.getBasicProfile();
@@ -84,6 +85,13 @@ export class SignupComponent implements OnInit {
     // The ID token you need to pass to your backend:
     const id_token = googleUser.getAuthResponse().id_token;
     console.log('ID Token: ' + id_token);
+  }
+
+  signOutGoogle() {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(() => {
+      console.log('User signed out.');
+    });
   }
 
 }
