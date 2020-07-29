@@ -21,6 +21,12 @@
 
 </div>
 
+<img *ngIf="loggedIn" [src]="user.photoUrl">
+<div *ngIf="loggedIn">
+  <h4>{{ user.name }}</h4>
+  <p>{{ user.email }}</p>
+</div>
+
 <div>
   <button mat-button>Cancel</button>
   <button mat-button cdkFocusInitial>Ok</button>
