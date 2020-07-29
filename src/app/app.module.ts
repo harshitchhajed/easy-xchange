@@ -11,7 +11,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDividerModule} from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -26,6 +25,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DonateComponent } from './front-page/donate/donate.component';
 import { FooterComponent } from './footer/footer.component';
 import { DialogPopupComponent } from './header/dialog-popup/dialog-popup.component';
+import { SignupComponent } from './signup/signup.component';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from 'angularx-social-login';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +42,8 @@ import { DialogPopupComponent } from './header/dialog-popup/dialog-popup.compone
     InputDetailsComponent,
     DonateComponent,
     FooterComponent,
-    DialogPopupComponent
+    DialogPopupComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -43,12 +51,12 @@ import { DialogPopupComponent } from './header/dialog-popup/dialog-popup.compone
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    SocialLoginModule,
     MatIconModule,
     MatInputModule,
     MatAutocompleteModule,
     MatChipsModule,
     MatFormFieldModule,
-    MatDividerModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatTabsModule,
@@ -57,7 +65,26 @@ import { DialogPopupComponent } from './header/dialog-popup/dialog-popup.compone
     MatToolbarModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '172126270901-erdkt4d5i89m7t1eauv4qmelhd7ves33.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('635708387067929'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

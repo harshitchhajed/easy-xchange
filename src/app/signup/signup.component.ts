@@ -1,24 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { SocialAuthService } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
-
 declare var FB: any;
 
 @Component({
-  selector: 'app-dialog-popup',
-  templateUrl: './dialog-popup.component.html',
-  styleUrls: ['./dialog-popup.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class DialogPopupComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DialogPopupComponent>, private authService: SocialAuthService) { }
+  constructor(private authService: SocialAuthService) { }
 
   ngOnInit(): void { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
