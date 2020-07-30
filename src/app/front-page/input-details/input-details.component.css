@@ -12,5 +12,13 @@ mat-form-field.date-entry {
 
 mat-form-field.search-button {
   width: 15%;
-  margin: 0px;
+  /* padding-left: 2.5%; */
+}
+
+.search-chip {
+  padding: 10% 15%;
+}
+
+mat-form-field.bigger-date-entry {
+  width: 40%;
 }

@@ -9,7 +9,10 @@ export class FrontPageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  tabChanged(index: number) {
+    console.log(index);
   }
 
 }

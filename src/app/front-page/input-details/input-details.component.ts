@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-input-details',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-details.component.css']
 })
 export class InputDetailsComponent implements OnInit {
+  @Input() selectedIndex: number;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.selectedIndex);
   }
 
   myFilter = (d: Date | null): boolean => {

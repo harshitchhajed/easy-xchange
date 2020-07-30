@@ -1,4 +1,4 @@
-<div style="margin:auto; width: 70%; margin-top: 30px;">
+<div class="front-container">
 
     <div class="row">
         <div class="logo-col">
@@ -10,12 +10,12 @@
         
     </div>
 
-    <mat-tab-group>
+    <mat-tab-group (selectedIndexChange)="tabChanged($event)">
         <mat-tab label="Find Items">
-            <app-input-details></app-input-details>
+            <app-input-details [selectedIndex]="0"></app-input-details>
         </mat-tab>
         <mat-tab label="Find Homes">
-            <app-input-details></app-input-details>
+            <app-input-details [selectedIndex]="1"></app-input-details>
         </mat-tab>
     </mat-tab-group>
     

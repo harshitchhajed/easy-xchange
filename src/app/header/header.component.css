@@ -3,6 +3,10 @@ mat-chip.signup {
     margin: 0px;
 }
 
+.signup:hover {
+    cursor: pointer;
+}
+
 .contain {
     margin-top: 3%;
     margin-left: 5%;
