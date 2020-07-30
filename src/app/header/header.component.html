@@ -1,7 +1,7 @@
 <div class="contain">
   <mat-toolbar style="background-color: transparent;">
 
-    <a href="#" class="nav-link">
+    <a *ngIf="displayOnFrontPage" routerLink="/" class="nav-link">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M11 4a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
             <path d="M7.5 4h1v9a.5.5 0 0 1-1 0V4z"/>
@@ -9,7 +9,9 @@
         </svg>
         Location
     </a>
-
+    
+    <img *ngIf="!displayOnFrontPage" class="logo-not-first-page" src="assets/ex.png" alt="Logo" routerLink="/">
+    
     <span class="fill-remaining-space"></span>
 
     <span class="nav-span">
@@ -31,7 +33,7 @@
     </span>
 
     <span class="nav-span">
-      <a class="nav-link">
+      <a class="nav-link" routerLink="/signup">
         <mat-chip-list>
             <mat-chip color="primary" selected class="signup">Sign Up</mat-chip>
         </mat-chip-list>

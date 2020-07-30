@@ -24,3 +24,10 @@ mat-chip.signup {
     font-weight: 500;
 }
 
+.logo-not-first-page {
+    height: 75%;
+}
+
+.logo-not-first-page:hover {
+    cursor: pointer;
+}
