@@ -27,9 +27,9 @@
     </span>
 
     <mat-form-field appearance="none" class="search-button">
-        <mat-chip-list>
+        <mat-chip-list class="remove-border align-items-center">
             <!-- TODO: add mat search icon here -->
-            <mat-chip color="primary" selected [disabled]="queryForm.invalid" class="search-chip" (click)="onSubmit()" (enter)="onSubmit()">Search</mat-chip>
+            <mat-chip color="primary" selected [disabled]="queryForm.invalid" class="search-chip" [ngClass]="{enabled: queryForm.valid}" (click)="onSearch()">Search</mat-chip>
         </mat-chip-list>
     </mat-form-field>
 

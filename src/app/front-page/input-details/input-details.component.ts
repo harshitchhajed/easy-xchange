@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { HomesQueryService } from './../../query/homes-query.service';
+import { ItemsQueryService } from './../../query/items-query.service';
+
 @Component({
   selector: 'app-input-details',
   templateUrl: './input-details.component.html',
@@ -10,7 +13,7 @@ export class InputDetailsComponent implements OnInit {
   @Input() selectedIndex: number;
   queryForm: FormGroup;
 
-  constructor() { }
+  constructor(private items: ItemsQueryService, private homes: HomesQueryService) { }
 
   ngOnInit(): void {
     this.queryForm = new FormGroup({
@@ -42,7 +45,9 @@ export class InputDetailsComponent implements OnInit {
     return date >= today;
   }
 
-  onSubmit() {
-    console.log(this.queryForm);
+  onSearch() {
+    if (this.queryForm.valid) {
+
+    }
   }
 }
