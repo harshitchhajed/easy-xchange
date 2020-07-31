@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-details',
@@ -7,17 +8,31 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class InputDetailsComponent implements OnInit {
   @Input() selectedIndex: number;
+  queryForm: FormGroup;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.selectedIndex);
+    this.queryForm = new FormGroup({
+      query: new FormControl(null),
+      date: new FormControl(new Date().toISOString()),
+      checkIn: new FormControl(),
+      checkOut: new FormControl(null)
+    });
   }
 
-  myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+  dateFilter = (d: Date | null): boolean => {
+    // const date = (d || new Date());
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return d >= today;
   }
 
+  checkInFilter(d: Date | null) {
+    return true;
+  }
+
+  checkOutFilter(d: Date | null) {
+    return true;
+  }
 }

@@ -21,7 +21,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import { FrontPageComponent } from './front-page/front-page.component';
 import { InputDetailsComponent } from './front-page/input-details/input-details.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DonateComponent } from './front-page/donate/donate.component';
 import { FooterComponent } from './footer/footer.component';
 import { DialogPopupComponent } from './header/dialog-popup/dialog-popup.component';

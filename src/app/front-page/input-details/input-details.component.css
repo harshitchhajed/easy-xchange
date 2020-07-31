@@ -12,12 +12,21 @@ mat-form-field.date-entry {
 
 mat-form-field.search-button {
   width: 15%;
+  text-align: center;
+  /* margin-bottom: 3%; */
   /* padding-left: 2.5%; */
 }
 
 .search-chip {
+  /* display: inline; */
+  align-items: center;
   padding: 10% 15%;
 }
+
+.search-chip:hover {
+  cursor: pointer;
+}
+
 
 mat-form-field.bigger-date-entry {
   width: 40%;
