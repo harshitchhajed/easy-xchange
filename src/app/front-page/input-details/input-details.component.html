@@ -1,25 +1,25 @@
-<form [formGroup]="queryForm">
+<form [formGroup]="queryForm" class="not-scrollable">
     <mat-form-field appearance="outline" class="search-entry">
-        <mat-label for="query">What are you looking for?</mat-label>
+        <mat-label>What are you looking for?</mat-label>
         <input matInput formControlName="query">
     </mat-form-field>
 
-    <mat-form-field *ngIf="this.selectedIndex === 0" appearance="outline" class="date-entry" [ngClass]="{'bigger-date-entry': this.selectedIndex === 0}">
-        <mat-label for="date">Date</mat-label>
+    <mat-form-field *ngIf="this.selectedIndex === 0" appearance="outline" class="date-entry" [ngClass]="{'bigger-date-entry': this.selectedIndex === 0}"  (click)="datePicker.open()">
+        <mat-label>Date</mat-label>
         <input matInput [matDatepickerFilter]="dateFilter" [matDatepicker]="datePicker" formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
         <mat-datepicker #datePicker></mat-datepicker>
     </mat-form-field>
 
     <span *ngIf="this.selectedIndex === 1">
-        <mat-form-field appearance="outline" class="date-entry">   
-            <mat-label for="checkIn">Check in</mat-label>
+        <mat-form-field appearance="outline" class="date-entry" (click)="checkInPicker.open()">   
+            <mat-label>Check in</mat-label>
             <input matInput [matDatepickerFilter]="checkInFilter" [matDatepicker]="checkInPicker" formControlName="checkIn">
             <mat-datepicker-toggle matSuffix [for]="checkInPicker"></mat-datepicker-toggle>
             <mat-datepicker #checkInPicker></mat-datepicker>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="date-entry">   
-            <mat-label for="checkOut">Check out</mat-label>
+        <mat-form-field appearance="outline" class="date-entry" (click)="checkOutPicker.open()">   
+            <mat-label>Check out</mat-label>
             <input matInput [matDatepickerFilter]="checkOutFilter" [matDatepicker]="checkOutPicker" formControlName="checkOut">
             <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
             <mat-datepicker #checkOutPicker></mat-datepicker>
@@ -29,7 +29,7 @@
     <mat-form-field appearance="none" class="search-button">
         <mat-chip-list>
             <!-- TODO: add mat search icon here -->
-            <mat-chip color="primary" selected class="search-chip">Search</mat-chip>
+            <mat-chip color="primary" selected [disabled]="queryForm.invalid" class="search-chip" (click)="onSubmit()" (enter)="onSubmit()">Search</mat-chip>
         </mat-chip-list>
     </mat-form-field>
 

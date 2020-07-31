@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-input-details',
@@ -14,7 +14,7 @@ export class InputDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.queryForm = new FormGroup({
-      query: new FormControl(null),
+      query: new FormControl(null, Validators.required),
       date: new FormControl(new Date().toISOString()),
       checkIn: new FormControl(),
       checkOut: new FormControl(null)
@@ -22,17 +22,27 @@ export class InputDetailsComponent implements OnInit {
   }
 
   dateFilter = (d: Date | null): boolean => {
-    // const date = (d || new Date());
+    const date = (d || new Date());
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    return d >= today;
+    return date >= today;
   }
 
   checkInFilter(d: Date | null) {
-    return true;
+    const date = (d || new Date());
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return date >= today;
   }
 
   checkOutFilter(d: Date | null) {
-    return true;
+    const date = (d || new Date());
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return date >= today;
+  }
+
+  onSubmit() {
+    console.log(this.queryForm);
   }
 }

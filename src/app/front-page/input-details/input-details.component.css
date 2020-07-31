@@ -13,8 +13,13 @@ mat-form-field.date-entry {
 mat-form-field.search-button {
   width: 15%;
   text-align: center;
+  align-items: center;
   /* margin-bottom: 3%; */
   /* padding-left: 2.5%; */
+}
+
+mat-form-field.search-button:focus {
+  outline: none;
 }
 
 .search-chip {
@@ -27,7 +32,9 @@ mat-form-field.search-button {
   cursor: pointer;
 }
 
-
+.not-scrollable {
+  overflow: hidden;
+}
 mat-form-field.bigger-date-entry {
   width: 40%;
 }
