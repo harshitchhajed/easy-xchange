@@ -11,8 +11,4 @@ export class FrontPageComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  tabChanged(index: number) {
-    console.log(index);
-  }
-
 }

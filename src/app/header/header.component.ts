@@ -16,12 +16,8 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         this.displayOnFrontPage = (event as NavigationStart).url === '/';
-        console.log(this.displayOnFrontPage);
       }
     });
-    // console.log(this.router);
-    // console.log(this.router.url);
-    // console.log(this.displayOnFrontPage);
   }
 
   // openSignUp() {

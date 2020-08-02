@@ -32,6 +32,8 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from 'angularx-social-login';
+import { ItemsComponent } from './query/items/items.component';
+import { HomesComponent } from './query/homes/homes.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import {
     DonateComponent,
     FooterComponent,
     DialogPopupComponent,
-    SignupComponent
+    SignupComponent,
+    ItemsComponent,
+    HomesComponent
   ],
   imports: [
     BrowserModule,

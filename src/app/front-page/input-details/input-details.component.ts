@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { HomesQueryService } from './../../query/homes-query.service';
 import { ItemsQueryService } from './../../query/items-query.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-input-details',
@@ -13,7 +14,7 @@ export class InputDetailsComponent implements OnInit {
   @Input() selectedIndex: number;
   queryForm: FormGroup;
 
-  constructor(private items: ItemsQueryService, private homes: HomesQueryService) { }
+  constructor(private items: ItemsQueryService, private homes: HomesQueryService, private router: Router) { }
 
   ngOnInit(): void {
     this.queryForm = new FormGroup({
@@ -31,6 +32,7 @@ export class InputDetailsComponent implements OnInit {
     return date >= today;
   }
 
+  // TODO: add better filters for check in and check out
   checkInFilter(d: Date | null) {
     const date = (d || new Date());
     const now = new Date();
@@ -46,8 +48,9 @@ export class InputDetailsComponent implements OnInit {
   }
 
   onSearch() {
+    console.log(this.queryForm);
     if (this.queryForm.valid) {
-
+      this.router.navigate(['\items'], {queryParams: {item: this.queryForm.value.query, date: this.queryForm.value.date}});
     }
   }
 }
