@@ -34,6 +34,7 @@ import {
 } from 'angularx-social-login';
 import { ItemsComponent } from './query/items/items.component';
 import { HomesComponent } from './query/homes/homes.component';
+import { ItemCardComponent } from './query/items/item-card/item-card.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { HomesComponent } from './query/homes/homes.component';
     DialogPopupComponent,
     SignupComponent,
     ItemsComponent,
-    HomesComponent
+    HomesComponent,
+    ItemCardComponent
   ],
   imports: [
     BrowserModule,

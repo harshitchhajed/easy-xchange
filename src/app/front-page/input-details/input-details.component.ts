@@ -14,7 +14,7 @@ export class InputDetailsComponent implements OnInit {
   @Input() selectedIndex: number;
   queryForm: FormGroup;
 
-  constructor(private items: ItemsQueryService, private homes: HomesQueryService, private router: Router) { }
+  constructor(private itemsService: ItemsQueryService, private homesService: HomesQueryService, private router: Router) { }
 
   ngOnInit(): void {
     this.queryForm = new FormGroup({
@@ -49,8 +49,26 @@ export class InputDetailsComponent implements OnInit {
 
   onSearch() {
     console.log(this.queryForm);
+    // TODO: in future: will have to subscribe to query params if adding search bar on /items and /homes
     if (this.queryForm.valid) {
-      this.router.navigate(['\items'], {queryParams: {item: this.queryForm.value.query, date: this.queryForm.value.date}});
+
+      if (this.selectedIndex === 0) {
+        const date = new Date(Date.parse(this.queryForm.value.date));
+        // console.log(date);
+        this.router.navigate(['\items'], {queryParams: {
+          item: this.queryForm.value.query,
+          date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+        }});
+        this.itemsService.getItems('a', 'b');
+      } else {
+        const checkIn  = new Date(Date.parse(this.queryForm.value.checkIn));
+        const checkOut = new Date(Date.parse(this.queryForm.value.checkOut));
+        this.router.navigate(['\homes'], {queryParams: {
+          item: this.queryForm.value.query,
+          checkIn: `${checkIn.getFullYear()}-${checkIn.getMonth() + 1}-${checkIn.getDate()}`,
+          checkOut: `${checkOut.getFullYear()}-${checkOut.getMonth() + 1}-${checkOut.getDate()}`
+        }});
+      }
     }
   }
 }
