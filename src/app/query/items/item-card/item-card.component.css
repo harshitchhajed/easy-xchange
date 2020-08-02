@@ -1,17 +1,21 @@
 .card {
     max-width: 320px;
-    padding: 2%;
-    background: transparent;
+    /* padding: 2%; */
+    background: black;
+    border-radius: 50px;
   }
 
 .wrapper {
   position: relative;
   display: inline-block;
+  max-width: 320px;
 }
 
-.wrapper img { /* <= optional, for responsiveness */
+
+
+.card-img { /* <= optional, for responsiveness */
   display: block;
-  /* max-width: 100%; */
+  max-width: 100%;
   height: auto;
 }
 
@@ -19,6 +23,7 @@
   position: absolute;
   top: 45%;
   left: 0;
+  display: block;
 }
 
 #right-arrow {
