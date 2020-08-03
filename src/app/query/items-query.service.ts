@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-interface ItemQuery {
+export interface ItemQuery {
   item: string;
   photosUrl: Array<string>;
   location: string;
@@ -38,7 +38,7 @@ export class ItemsQueryService {
       pricePerHour: 10.50
     };
 
-    const tempItems = [chair, desk];
+    const tempItems = [chair, desk, chair, desk, chair, desk, chair];
 
     this.items = tempItems;
 

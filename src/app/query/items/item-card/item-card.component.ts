@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ItemsQueryService } from '../../items-query.service';
+import { ItemQuery } from './../../items-query.service';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-item-card',
@@ -7,6 +7,7 @@ import { ItemsQueryService } from '../../items-query.service';
   styleUrls: ['./item-card.component.css']
 })
 export class ItemCardComponent implements OnInit {
+  @Input() item: ItemQuery;
   pics: string[];
   itemName: string;
   staticMapsUrl: string;
@@ -16,18 +17,13 @@ export class ItemCardComponent implements OnInit {
   key = '';
   mapShown = false;
 
-  constructor(private itemsService: ItemsQueryService) { }
+  constructor() { }
 
   ngOnInit(): void {
     // const items = this.itemsService.getItems();
-    this.pics = [
-      'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0724628_PE734561_S5.JPG?f=xs',
-      'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0723346_PE733927_S5.JPG?f=g',
-      'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0723347_PE733930_S5.JPG?f=g',
-      'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0854761_PE563185_S5.JPG?f=g'
-    ];
+    this.pics = this.item.photosUrl;
 
-    this.itemName = 'Office Chair';
+    this.itemName = this.item.item;;
 
     this.staticMapsUrl = `https://maps.googleapis.com/maps/api/staticmap?center=University+of+British+Columbia,Vancouver,BC
       &zoom=13
