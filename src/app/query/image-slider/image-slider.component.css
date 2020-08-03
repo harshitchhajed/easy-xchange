@@ -9,6 +9,10 @@
     max-width: 100%;
     height: auto;
 }
+
+.card-img:hover {
+    transform: scale(1.025);
+  }
   
 #left-arrow {
     position: absolute;

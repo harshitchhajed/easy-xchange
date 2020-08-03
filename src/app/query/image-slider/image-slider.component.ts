@@ -8,15 +8,11 @@ import { trigger, transition, style, animate } from '@angular/animations';
   animations: [
     trigger('sliderAnimation', [
       transition('void => *', [
-        style({ opacity: 0 }),
-        animate('300ms', style({
-          opacity: 1
+        style({ opacity: 0, transform: 'scale(0.75)' }),
+        animate('500ms cubic-bezier(0.785, 0.135, 0.15, 0.86)', style({
+          opacity: 1,
+          transform: 'scale(1)'
         }))
-      ]),
-      transition('* => void', [
-        animate('0ms', style({
-          opacity: 0
-      }))
       ])
     ])
   ]
@@ -29,6 +25,7 @@ export class ImageSliderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.preloadImages();
   }
 
   onPreviousClick() {
@@ -39,6 +36,12 @@ export class ImageSliderComponent implements OnInit {
   onNextClick() {
     const next = this.currentSlide + 1;
     this.currentSlide = next === this.slides.length ? 0 : next;
+  }
+
+  preloadImages() {
+    for (const url of this.slides) {
+      new Image().src = url;
+    }
   }
 
 }
