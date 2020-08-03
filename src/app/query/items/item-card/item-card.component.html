@@ -3,16 +3,18 @@
         <mat-card-title>Desk</mat-card-title>
         <mat-card-subtitle>Marine Drive Building 4</mat-card-subtitle>
     </mat-card-header>
-    <div>
-        <app-image-slider [slides]="pics" name="itemName"></app-image-slider>
-    </div>
+    
+    <app-image-slider *ngIf="!mapShown" [slides]="pics" name="itemName"></app-image-slider>
+    <img *ngIf="mapShown" class="google-static-img" [src]="staticMapsUrl" alt="Maps Location">
+
     <mat-card-content>
         <span style="font-weight: 400;">Price: </span>
         <span style="font-weight: 900;">$5.00</span>
         <span style="font-weight: 400;">/hour</span>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button disableRipple=true>Find on Map</button>
+      <button *ngIf="!mapShown" mat-button disableRipple=true (click)="this.mapShown = true;">Find on Map</button>
+      <button *ngIf="mapShown" mat-button disableRipple=true (click)="this.mapShown = false;">See the Post</button>
       <button mat-button>See More</button>
       <button mat-raised-button color="warn">Rent Now</button>
     </mat-card-actions>

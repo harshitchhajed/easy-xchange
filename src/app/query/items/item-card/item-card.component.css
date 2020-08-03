@@ -5,30 +5,9 @@
     border-radius: 50px;
   }
 
-.wrapper {
-  position: relative;
-  display: inline-block;
-  max-width: 320px;
-}
-
-
-
-.card-img { /* <= optional, for responsiveness */
+.google-static-img { /* <= optional, for responsiveness */
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-#left-arrow {
-  position: absolute;
-  top: 45%;
-  left: 0;
-  display: block;
-}
-
-#right-arrow {
-  position: absolute;
-  top: 45%;
-  right: 0;
-  display: block;
-}
