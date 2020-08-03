@@ -16,7 +16,7 @@ export class ItemsQueryService {
   constructor() { }
 
   // TODO: pass in queries like this. In future: server infers from the url
-  getItems(item: string, date: string) {
+  getItemsFromServer(item: string, date: string) {
     // maybe some http get request
     const chair: ItemQuery = {item: 'Office Chair', photosUrl: [
       'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0724628_PE734561_S5.JPG?f=xs',
@@ -44,5 +44,9 @@ export class ItemsQueryService {
 
     console.log(this.items);
 
+  }
+
+  getItems() {
+    return this.items;
   }
 }

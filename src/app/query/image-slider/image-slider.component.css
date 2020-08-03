@@ -1,0 +1,25 @@
+.wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 320px;
+  }
+  
+.card-img { /* <= for responsiveness */
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+  
+#left-arrow {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    display: block;
+}
+  
+#right-arrow {
+    position: absolute;
+    top: 45%;
+    right: 0;
+    display: block;
+}

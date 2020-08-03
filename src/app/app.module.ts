@@ -36,6 +36,7 @@ import {
 import { ItemsComponent } from './query/items/items.component';
 import { HomesComponent } from './query/homes/homes.component';
 import { ItemCardComponent } from './query/items/item-card/item-card.component';
+import { ImageSliderComponent } from './query/image-slider/image-slider.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ItemCardComponent } from './query/items/item-card/item-card.component';
     SignupComponent,
     ItemsComponent,
     HomesComponent,
-    ItemCardComponent
+    ItemCardComponent,
+    ImageSliderComponent
   ],
   imports: [
     BrowserModule,
