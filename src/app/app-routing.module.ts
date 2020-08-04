@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FrontPageComponent } from './front-page/front-page.component';
 import { SignupComponent } from './signup/signup.component';
+import { ItemsComponent } from './query/items/items.component';
+
 // import { MatIconModule } from '@angular/material/icon';
 // import { MatInputModule } from '@angular/material/input';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -15,7 +17,6 @@ import { SignupComponent } from './signup/signup.component';
 // import { MatCardModule } from '@angular/material/card';
 // import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatDialogModule } from '@angular/material/dialog';
-import { ItemsComponent } from './query/items/items.component';
 
 
 const routes: Routes = [

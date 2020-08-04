@@ -42,8 +42,6 @@ export class ItemsQueryService {
 
     this.items = tempItems;
 
-    console.log(this.items);
-
   }
 
   getItems() {
