@@ -1,5 +1,5 @@
-import { ItemQuery } from './../../items-query.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { ItemQuery } from '../../item-query';
 
 @Component({
   selector: 'app-item-card',
@@ -21,15 +21,15 @@ export class ItemCardComponent implements OnInit {
 
   ngOnInit(): void {
     // const items = this.itemsService.getItems();
-    this.pics = this.item.photosUrl;
+    this.pics = this.item.photos;
 
-    this.itemName = this.item.item;
+    this.itemName = this.item.name;
 
     this.staticMapsUrl = `https://maps.googleapis.com/maps/api/staticmap?center=University+of+British+Columbia,Vancouver,BC
       &zoom=13
       &size=320x400
       &maptype=roadmap
-      &markers=color:red%7C${this.lat},${this.long}
+      &markers=color:red%7C${this.item.location.locationGeopoint.latitude},${this.item.location.locationGeopoint.longitude}
       &key=${this.key}`;
    }
 }

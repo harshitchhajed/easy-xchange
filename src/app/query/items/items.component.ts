@@ -1,6 +1,6 @@
-import { ItemQuery } from './../items-query.service';
 import { Component, OnInit } from '@angular/core';
 import { ItemsQueryService } from '../items-query.service';
+import { ItemQuery } from '../item-query';
 
 @Component({
   selector: 'app-items',
