@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 export interface ItemQuery {
   item: string;
@@ -13,20 +14,15 @@ export interface ItemQuery {
 export class ItemsQueryService {
   items: ItemQuery[];
 
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
 
   // TODO: pass in queries like this. In future: server infers from the url
   getItemsFromServer(item: string, date: string) {
     // maybe some http get request
-    const chair: ItemQuery = {item: 'Office Chair', photosUrl: [
-      'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0724628_PE734561_S5.JPG?f=xs',
-      'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0723346_PE733927_S5.JPG?f=g',
-      'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0723347_PE733930_S5.JPG?f=g',
-      'https://www.ikea.com/in/en/images/products/flintan-nominell-office-chair-with-armrests__0854761_PE563185_S5.JPG?f=g'
-      ],
-      location: 'Marine Drive Building',
-      pricePerHour: 5.00
-    };
+    const chair = this.firestore.collection('/items').doc('0NZoYnkYj3zyuSLOmb2d').get().subscribe(snapshot => {
+      console.log(snapshot.data());
+      return snapshot;
+    });
 
     const desk: ItemQuery = {item: 'Desk', photosUrl: [
       'https://www.ikea.com/in/en/images/products/micke-desk__0736019_PE740346_S5.JPG?f=xs',
@@ -38,7 +34,7 @@ export class ItemsQueryService {
       pricePerHour: 10.50
     };
 
-    const tempItems = [chair, desk, chair, desk, chair, desk, chair];
+    const tempItems = [desk, desk, desk, desk, desk, desk, desk];
 
     this.items = tempItems;
 

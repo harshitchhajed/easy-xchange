@@ -23,7 +23,7 @@ export class ItemCardComponent implements OnInit {
     // const items = this.itemsService.getItems();
     this.pics = this.item.photosUrl;
 
-    this.itemName = this.item.item;;
+    this.itemName = this.item.item;
 
     this.staticMapsUrl = `https://maps.googleapis.com/maps/api/staticmap?center=University+of+British+Columbia,Vancouver,BC
       &zoom=13
