@@ -16,14 +16,15 @@ export class RentItemComponent implements OnInit {
   locationFormGroup: FormGroup;
   describeFormGroup: FormGroup;
   timingsFormGroup: FormGroup;
-  priceFormGroup: FormGroup;
-  payoutFormGroup: FormGroup;
+  moneyFormGroup: FormGroup;
+  srcResult: any;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.detailsFormGroup = this.formBuilder.group({
       nameCtrl: ['', Validators.required],
+      photoCtrl: ['', Validators.required]
     });
     this.locationFormGroup = this.formBuilder.group({
       locationCtrl: ['', Validators.required]
@@ -34,12 +35,25 @@ export class RentItemComponent implements OnInit {
     this.timingsFormGroup = this.formBuilder.group({
       timeCtrl: ['', Validators.required]
     });
-    this.priceFormGroup = this.formBuilder.group({
+    this.moneyFormGroup = this.formBuilder.group({
       priceCtrl: ['', Validators.required]
     });
-    this.payoutFormGroup = this.formBuilder.group({
-      payoutCtrl: ['', Validators.required]
-    });
+  }
+
+  onFileSelected() {
+    const inputNode: any = document.querySelector('#file');
+
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.srcResult = e.target.result;
+      };
+
+      reader.readAsArrayBuffer(inputNode.files[0]);
+    }
+
+    console.log(this.srcResult);
   }
 
 }

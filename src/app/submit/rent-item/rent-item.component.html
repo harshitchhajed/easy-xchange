@@ -4,10 +4,18 @@
         <mat-step [stepControl]="detailsFormGroup" errorMessage="Name is required.">
           <form [formGroup]="detailsFormGroup">
             <ng-template matStepLabel>Item Name and Photos</ng-template>
+            
             <mat-form-field>
-              <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="nameCtrl" required>
+              <mat-label>Item Name</mat-label>
+              <input matInput formControlName="nameCtrl" required>
             </mat-form-field>
+            <br>
+
+            <!-- TODO: need to make this work -->
+            <mat-label>Upload Photos</mat-label>
+            <br>
+            <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>
@@ -19,8 +27,9 @@
             <ng-template matStepLabel>Preferred Pickup Location</ng-template>
             <mat-form-field>
               <mat-label>Address</mat-label>
-              <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="locationCtrl" required>
+              <input matInput placeholder="Ex. Braeburn, Orchard Commons" formControlName="locationCtrl" required>
             </mat-form-field>
+            <br>
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
@@ -30,7 +39,7 @@
 
         <mat-step [stepControl]="describeFormGroup" errorMessage="Description is required.">
             <form [formGroup]="describeFormGroup">
-              <ng-template matStepLabel>Short Description that fits your item</ng-template>
+              <ng-template matStepLabel>A Short and Fitting Description</ng-template>
               <mat-form-field>
                 <mat-label>Describe</mat-label>
                 <input matInput placeholder="" formControlName="describeCtrl" required>
@@ -56,8 +65,8 @@
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="priceFormGroup" errorMessage="Price is required.">
-            <form [formGroup]="priceFormGroup">
+        <mat-step [stepControl]="moneyFormGroup" errorMessage="Price and Payment are required.">
+            <form [formGroup]="moneyFormGroup">
               <ng-template matStepLabel>Pricing</ng-template>
               <mat-form-field>
                 <mat-label>Price in CAD</mat-label>
@@ -69,24 +78,10 @@
               </div>
             </form>
         </mat-step>
-
-        <mat-step [stepControl]="payoutFormGroup" errorMessage="Payment details are required.">
-            <form [formGroup]="payoutFormGroup">
-              <ng-template matStepLabel>Payout</ng-template>
-              <mat-form-field>
-                <mat-label>Payment Details</mat-label>
-                <input matInput placeholder="Scotiabank" formControlName="payoutCtrl" required>
-              </mat-form-field>
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-              </div>
-            </form>
-        </mat-step>
           
         <mat-step>
           <ng-template matStepLabel>Submit</ng-template>
-          <p>You are now done.</p>
+          <p>You are now done now.</p>
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>

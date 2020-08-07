@@ -1,9 +1,13 @@
 .container {
     margin-top: 3%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 .mat-form-field {
     margin-top: 16px;
+}
+
+form {
+    margin-left: 5%;
 }
