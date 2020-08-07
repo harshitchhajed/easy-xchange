@@ -22,6 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { FrontPageComponent } from './front-page/front-page.component';
 import { InputDetailsComponent } from './front-page/input-details/input-details.component';
@@ -38,6 +39,7 @@ import { HomesComponent } from './query/homes/homes.component';
 import { ItemCardComponent } from './query/items/item-card/item-card.component';
 import { ImageSliderComponent } from './query/image-slider/image-slider.component';
 import { environment } from 'src/environments/environment';
+import { RentItemComponent } from './submit/rent-item/rent-item.component';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { environment } from 'src/environments/environment';
     ItemsComponent,
     HomesComponent,
     ItemCardComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    RentItemComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { environment } from 'src/environments/environment';
     MatCardModule,
     MatToolbarModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatStepperModule
   ],
   providers: [
     {
