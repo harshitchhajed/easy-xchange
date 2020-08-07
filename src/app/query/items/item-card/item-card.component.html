@@ -1,10 +1,10 @@
 <mat-card class="card">
     <mat-card-header>
-        <mat-card-title>{{ itemName }}</mat-card-title>
-        <mat-card-subtitle>{{ this.item.location.locationName }}</mat-card-subtitle>
+        <mat-card-title>{{ item.name }}</mat-card-title>
+        <mat-card-subtitle>{{ item.location.locationName }}</mat-card-subtitle>
     </mat-card-header>
     
-    <app-image-slider *ngIf="!mapShown" [slides]="pics" name="itemName"></app-image-slider>
+    <app-image-slider *ngIf="!mapShown" [slides]="this.item.photos" [name]="item.name"></app-image-slider>
     <img *ngIf="mapShown" class="google-static-img" [src]="staticMapsUrl" alt="Maps Location">
 
     <mat-card-content>
@@ -13,8 +13,8 @@
         <span style="font-weight: 400;">/hour</span>
     </mat-card-content>
     <mat-card-actions>
-      <button *ngIf="!mapShown" mat-button disableRipple=true (click)="this.mapShown = true;">Find on Map</button>
-      <button *ngIf="mapShown" mat-button disableRipple=true (click)="this.mapShown = false;">See the Post</button>
+      <button *ngIf="!mapShown" mat-button disableRipple=true (click)="mapShown = true;">Find on Map</button>
+      <button *ngIf="mapShown" mat-button disableRipple=true (click)="mapShown = false;">See the Post</button>
       <button mat-button>See More</button>
       <button mat-raised-button color="warn">Rent Now</button>
     </mat-card-actions>

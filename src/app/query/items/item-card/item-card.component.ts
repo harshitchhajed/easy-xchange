@@ -8,22 +8,15 @@ import { ItemQuery } from '../../item-query';
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: ItemQuery;
-  pics: string[];
-  itemName: string;
   staticMapsUrl: string;
-  lat = '49.2614434';
-  long = '-123.2588847';
   // TODO: remove api key from front-end
   key = '';
+
   mapShown = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    // const items = this.itemsService.getItems();
-    this.pics = this.item.photos;
-
-    this.itemName = this.item.name;
 
     this.staticMapsUrl = `https://maps.googleapis.com/maps/api/staticmap?center=University+of+British+Columbia,Vancouver,BC
       &zoom=13
