@@ -1,15 +1,45 @@
 import { Component, OnInit } from '@angular/core';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-rent-item',
   templateUrl: './rent-item.component.html',
-  styleUrls: ['./rent-item.component.css']
+  styleUrls: ['./rent-item.component.css'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS,
+    useValue: {showError: true}
+  }]
 })
 export class RentItemComponent implements OnInit {
+  detailsFormGroup: FormGroup;
+  locationFormGroup: FormGroup;
+  describeFormGroup: FormGroup;
+  timingsFormGroup: FormGroup;
+  priceFormGroup: FormGroup;
+  payoutFormGroup: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.detailsFormGroup = this.formBuilder.group({
+      nameCtrl: ['', Validators.required],
+    });
+    this.locationFormGroup = this.formBuilder.group({
+      locationCtrl: ['', Validators.required]
+    });
+    this.describeFormGroup = this.formBuilder.group({
+      describeCtrl: ['', Validators.required]
+    });
+    this.timingsFormGroup = this.formBuilder.group({
+      timeCtrl: ['', Validators.required]
+    });
+    this.priceFormGroup = this.formBuilder.group({
+      priceCtrl: ['', Validators.required]
+    });
+    this.payoutFormGroup = this.formBuilder.group({
+      payoutCtrl: ['', Validators.required]
+    });
   }
 
 }
