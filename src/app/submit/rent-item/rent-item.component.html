@@ -14,8 +14,8 @@
             <!-- TODO: need to make this work -->
             <mat-label>Upload Photos</mat-label>
             <br>
-            <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-            <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+            <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button> -->
+            <input (change)="onFileSelected()" #fileInput type="file" id="file">
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>
