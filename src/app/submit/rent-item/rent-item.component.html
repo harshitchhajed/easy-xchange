@@ -28,11 +28,12 @@
           <form [formGroup]="locationFormGroup">
             <ng-template matStepLabel>Preferred Pickup Location</ng-template>
             <mat-form-field class="input-size">
-              <mat-label>Address</mat-label>
+              <mat-label>Pickup Address</mat-label>
               <input matInput placeholder="Ex. Braeburn, Orchard Commons" formControlName="locationCtrl" required>
             </mat-form-field>
             <br>
-            <google-map height="600px" width="500px" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
+            <mat-label>Select the pickup location on the map below</mat-label>
+            <google-map height="600px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
               <map-marker #marker="mapMarker" [position]="markerPosition"
                 [options]="markerOptions"></map-marker>
             </google-map>

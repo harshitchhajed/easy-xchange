@@ -19,7 +19,7 @@ export class RentItemComponent implements OnInit {
   timingsFormGroup: FormGroup;
   moneyFormGroup: FormGroup;
   // srcResult: any;
-  center = {lat: 49.26357020727088, lng: -123.24428728160174};
+  center = {lat: 49.26372754901676, lng: -123.20738746163161};
   markerOptions = {draggable: false};
   markerPosition: google.maps.LatLngLiteral;
   zoom = 14;
