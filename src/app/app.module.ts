@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { CommonModule } from '@angular/common';
+import { GoogleMapsModule } from '@angular/google-maps';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,15 +36,13 @@ import { DonateComponent } from './front-page/donate/donate.component';
 import { FooterComponent } from './footer/footer.component';
 import { DialogPopupComponent } from './header/dialog-popup/dialog-popup.component';
 import { SignupComponent } from './signup/signup.component';
-
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { ItemsComponent } from './query/items/items.component';
 import { HomesComponent } from './query/homes/homes.component';
 import { ItemCardComponent } from './query/items/item-card/item-card.component';
 import { ImageSliderComponent } from './query/image-slider/image-slider.component';
 import { environment } from 'src/environments/environment';
 import { RentItemComponent } from './submit/rent-item/rent-item.component';
+
 
 
 @NgModule({
@@ -81,7 +84,9 @@ import { RentItemComponent } from './submit/rent-item/rent-item.component';
     MatToolbarModule,
     MatDialogModule,
     MatButtonModule,
-    MatStepperModule
+    MatStepperModule,
+    CommonModule,
+    GoogleMapsModule
   ],
   providers: [
     {

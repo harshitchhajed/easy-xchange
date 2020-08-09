@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 @Component({
   selector: 'app-rent-item',
@@ -17,7 +18,11 @@ export class RentItemComponent implements OnInit {
   describeFormGroup: FormGroup;
   timingsFormGroup: FormGroup;
   moneyFormGroup: FormGroup;
-  srcResult: any;
+  // srcResult: any;
+  center = {lat: 49.26357020727088, lng: -123.24428728160174};
+  markerOptions = {draggable: false};
+  markerPosition: google.maps.LatLngLiteral;
+  zoom = 14;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -40,20 +45,24 @@ export class RentItemComponent implements OnInit {
     });
   }
 
-  onFileSelected() {
-    const inputNode: any = document.querySelector('#file');
+  // onFileSelected() {
+  //   const inputNode: any = document.querySelector('#file');
 
-    if (typeof (FileReader) !== 'undefined') {
-      const reader = new FileReader();
+  //   if (typeof (FileReader) !== 'undefined') {
+  //     const reader = new FileReader();
 
-      reader.onload = (e: any) => {
-        this.srcResult = e.target.result;
-      };
+  //     reader.onload = (e: any) => {
+  //       this.srcResult = e.target.result;
+  //     };
 
-      reader.readAsArrayBuffer(inputNode.files[0]);
-    }
+  //     reader.readAsArrayBuffer(inputNode.files[0]);
+  //   }
 
-    console.log(this.srcResult);
+  //   console.log(this.srcResult);
+  // }
+
+  addMarker(event: google.maps.MouseEvent) {
+    this.markerPosition = event.latLng.toJSON();
+    console.log(this.markerPosition);
   }
-
 }
