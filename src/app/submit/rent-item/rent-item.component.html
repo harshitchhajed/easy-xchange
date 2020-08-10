@@ -5,6 +5,7 @@
           <form [formGroup]="detailsFormGroup">
             <ng-template matStepLabel>What is it?</ng-template>
             
+            <h2 class="form-heading">Give Me Some Name</h2>
             <mat-form-field class="input-size" appearance="outline">
               <mat-label>Item Name</mat-label>
               <input matInput maxlength=50 formControlName="nameCtrl" required #itemName>
@@ -14,7 +15,7 @@
             <mat-divider class="divide-and-rule"></mat-divider>
 
             <!-- TODO: need to make this work -->
-            <mat-label>Upload Photos</mat-label>
+            <h2 class="form-heading">Upload Photos</h2>
             <br>
             <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button> -->
             <!-- <input (change)="onFileSelected()" #fileInput type="file" id="file"> -->
@@ -31,6 +32,7 @@
         <mat-step [stepControl]="locationFormGroup">
           <form [formGroup]="locationFormGroup">
             <ng-template matStepLabel>Preferred Pickup Location</ng-template>
+            <h2 class="form-heading">Pick It Up</h2>
             <mat-form-field class="input-size" appearance="outline">
               <mat-label>Pickup Address</mat-label>
               <input matInput placeholder="Ex. Braeburn, Orchard Commons" formControlName="locationCtrl" required>
@@ -38,7 +40,7 @@
             
             <mat-divider class="divide-and-rule"></mat-divider>
 
-            <mat-label>Select the pickup location on the map below</mat-label>
+            <h2 class="form-heading">Select the pickup location on the map below</h2>
             <google-map height="600px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
               <map-marker [position]="markerPosition"
                 [options]="markerOptions"></map-marker>
@@ -55,6 +57,7 @@
 
         <mat-step [stepControl]="describeFormGroup">
             <form [formGroup]="describeFormGroup">
+              <h2 class="form-heading">Paint a Description</h2>
               <ng-template matStepLabel>A Short and Fitting Description</ng-template>
               <mat-form-field class="input-size" appearance="outline">
                 <mat-label>Highlight the best features of your item</mat-label>
@@ -74,7 +77,7 @@
         <mat-step [stepControl]="timingsFormGroup">
             <form [formGroup]="timingsFormGroup">
               <ng-template matStepLabel>Times that suit you</ng-template>
-              
+              <h2 class="form-heading">Notice Me</h2>
               <mat-form-field class="input-size" appearance="outline">
                 <mat-label>How much notice do you need?</mat-label>
                 <mat-select>
@@ -136,7 +139,7 @@
               <h2 class="form-heading">Payment</h2>
               <mat-form-field class="input-size" appearance="outline">
                 <mat-label>Interac Email</mat-label>
-                <input matInput type="text" formControlName="interacCtrl">
+                <input matInput type="text" formControlName="interacCtrl" required>
                 <mat-hint>You will paid through Interac by the renter</mat-hint>
               </mat-form-field>
 
@@ -154,7 +157,7 @@
           <p>You are now done now.</p>
 
           <mat-divider class="divide-and-rule"></mat-divider>
-          
+
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
