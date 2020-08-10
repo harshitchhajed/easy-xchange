@@ -3,7 +3,7 @@
 
         <mat-step [stepControl]="detailsFormGroup" errorMessage="Name is required.">
           <form [formGroup]="detailsFormGroup">
-            <ng-template matStepLabel>Item Name and Photos</ng-template>
+            <ng-template matStepLabel>Name and Photos</ng-template>
             
             <mat-form-field class="input-size" appearance="outline">
               <mat-label>Item Name</mat-label>
@@ -72,7 +72,7 @@
                 </mat-select>
               </mat-form-field>
               <br>
-              <h3 class="form-heading">Select your preferred pickup time</h3>
+              <h2 class="form-heading">Select your preferred pickup time</h2>
               <mat-form-field class="half-input-size full-padding-right" appearance="outline">
                 <mat-label>From</mat-label>
                 <input matInput type="time">
@@ -81,7 +81,13 @@
                 <mat-label>To</mat-label>
                 <input matInput type="time">
               </mat-form-field>
-                
+              <h2 class="form-heading">Select windows of your time availability for the next 3 months</h2>
+              <h3 class="form-heading">Add more windows with <mat-icon>add_circle_outline</mat-icon></h3>
+              <h3 class="form-heading">You can leave unused windows blank</h3>
+              <div *ngFor="let window of windows; let i=index">
+                <app-date-window></app-date-window>
+                <mat-icon *ngIf=" i === windows.length - 1" (click)="addMoreWindows()" class="add-icon">add_circle_outline</mat-icon>
+              </div>
 
               <div>
                 <button mat-button matStepperPrevious>Back</button>

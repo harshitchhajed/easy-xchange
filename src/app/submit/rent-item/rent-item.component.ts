@@ -29,6 +29,9 @@ export class RentItemComponent implements OnInit {
   advanceNotice: string;
   notices: string[] = ['Same Day', '1 Day', '2 Days', '3 Days'];
 
+  // for windows in Timing
+  windows = [1];
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -70,5 +73,9 @@ export class RentItemComponent implements OnInit {
     // TODO: get placeId
     // event.stop();
     this.markerPosition = event.latLng.toJSON();
+  }
+
+  addMoreWindows() {
+    this.windows.push(this.windows[-1] + 1);
   }
 }
