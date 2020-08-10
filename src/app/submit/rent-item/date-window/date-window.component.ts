@@ -13,18 +13,32 @@ export class DateWindowComponent implements OnInit {
   }
 
   // TODO: add better filters for check in and check out
-  checkInFilter(d: Date | null) {
+  startFilter(d: Date | null) {
     const date = (d || new Date());
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    return date >= today;
+    let threeMonthsFuture: Date;
+    if (now.getMonth() + 3 > 12) {
+      threeMonthsFuture = new Date(now.getFullYear() + 1, now.getMonth() + 3 - 12, now.getDate());
+    } else {
+      threeMonthsFuture = new Date(now.getFullYear(), now.getMonth() + 3, now.getDate());
+    }
+
+    return (date <= threeMonthsFuture) && (date >= today);
   }
 
-  checkOutFilter(d: Date | null) {
+  endFilter(d: Date | null) {
     const date = (d || new Date());
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    return date >= today;
+    let threeMonthsFuture: Date;
+    if (now.getMonth() + 3 > 12) {
+      threeMonthsFuture = new Date(now.getFullYear() + 1, now.getMonth() + 3 - 12, now.getDate());
+    } else {
+      threeMonthsFuture = new Date(now.getFullYear(), now.getMonth() + 3, now.getDate());
+    }
+
+    return (date <= threeMonthsFuture) && (date >= today);
   }
 
 }
