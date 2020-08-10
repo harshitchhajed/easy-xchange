@@ -28,6 +28,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 
 import { FrontPageComponent } from './front-page/front-page.component';
 import { InputDetailsComponent } from './front-page/input-details/input-details.component';
@@ -85,6 +87,8 @@ import { RentItemComponent } from './submit/rent-item/rent-item.component';
     MatDialogModule,
     MatButtonModule,
     MatStepperModule,
+    MatRadioModule,
+    MatSelectModule,
     CommonModule,
     GoogleMapsModule
   ],

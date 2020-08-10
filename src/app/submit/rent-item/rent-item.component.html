@@ -5,7 +5,7 @@
           <form [formGroup]="detailsFormGroup">
             <ng-template matStepLabel>Item Name and Photos</ng-template>
             
-            <mat-form-field class="input-size">
+            <mat-form-field class="input-size" appearance="outline">
               <mat-label>Item Name</mat-label>
               <input matInput maxlength=50 formControlName="nameCtrl" required #itemName>
               <mat-hint align="end">{{itemName.value.length}} / 50</mat-hint>
@@ -27,14 +27,14 @@
         <mat-step [stepControl]="locationFormGroup" errorMessage="Address is required.">
           <form [formGroup]="locationFormGroup">
             <ng-template matStepLabel>Preferred Pickup Location</ng-template>
-            <mat-form-field class="input-size">
+            <mat-form-field class="input-size" appearance="outline">
               <mat-label>Pickup Address</mat-label>
               <input matInput placeholder="Ex. Braeburn, Orchard Commons" formControlName="locationCtrl" required>
             </mat-form-field>
             <br>
             <mat-label>Select the pickup location on the map below</mat-label>
             <google-map height="600px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
-              <map-marker #marker="mapMarker" [position]="markerPosition"
+              <map-marker [position]="markerPosition"
                 [options]="markerOptions"></map-marker>
             </google-map>
             <div>
@@ -47,7 +47,7 @@
         <mat-step [stepControl]="describeFormGroup" errorMessage="Description is required.">
             <form [formGroup]="describeFormGroup">
               <ng-template matStepLabel>A Short and Fitting Description</ng-template>
-              <mat-form-field class="input-size">
+              <mat-form-field class="input-size" appearance="outline">
                 <mat-label>Highlight the best features of your item</mat-label>
                 <textarea rows=8 matInput formControlName="describeCtrl" required maxlength=500 #describe></textarea>
                 <mat-hint align="end">{{ describe.value.length }} / 500</mat-hint>
@@ -62,10 +62,27 @@
         <mat-step [stepControl]="timingsFormGroup" errorMessage="Timings are required.">
             <form [formGroup]="timingsFormGroup">
               <ng-template matStepLabel>Times that suit you</ng-template>
-              <mat-form-field>
-                <mat-label>Pickup and Dropoff Times</mat-label>
-                <input matInput placeholder="" formControlName="timeCtrl" required>
+              
+              <mat-form-field class="input-size" appearance="outline">
+                <mat-label>How much notice do you need?</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let notice of notices" [value]="notice">
+                    {{ notice }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
+              <br>
+              <h3 class="form-heading">Select your preferred pickup time</h3>
+              <mat-form-field class="half-input-size full-padding-right" appearance="outline">
+                <mat-label>From</mat-label>
+                <input matInput type="time">
+              </mat-form-field>
+              <mat-form-field class="half-input-size" appearance="outline">
+                <mat-label>To</mat-label>
+                <input matInput type="time">
+              </mat-form-field>
+                
+
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>

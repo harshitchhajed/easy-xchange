@@ -18,10 +18,16 @@ export class RentItemComponent implements OnInit {
   timingsFormGroup: FormGroup;
   moneyFormGroup: FormGroup;
   // srcResult: any;
+
+  // For Google Maps in location
   center = {lat: 49.26372754901676, lng: -123.20738746163161};
   markerOptions = {draggable: true};
   markerPosition: google.maps.LatLngLiteral;
   zoom = 14;
+
+  // for radio buttons in timings
+  advanceNotice: string;
+  notices: string[] = ['Same Day', '1 Day', '2 Days', '3 Days'];
 
   constructor(private formBuilder: FormBuilder) {}
 

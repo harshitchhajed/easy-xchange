@@ -8,6 +8,10 @@
     margin-top: 16px;
 }
 
+.form-heading {
+    margin-bottom: 0px;
+}
+
 form {
     margin: 0 2%;
 }
@@ -15,3 +19,21 @@ form {
 .input-size {
     width: 40%;
 }
+
+.half-input-size {
+    width: 18%;
+}
+
+.full-padding-right {
+    padding-right: 4%;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.radio-button {
+    margin: 5px;
+  }
