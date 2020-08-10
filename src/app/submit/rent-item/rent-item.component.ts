@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 @Component({
   selector: 'app-rent-item',
@@ -20,7 +19,7 @@ export class RentItemComponent implements OnInit {
   moneyFormGroup: FormGroup;
   // srcResult: any;
   center = {lat: 49.26372754901676, lng: -123.20738746163161};
-  markerOptions = {draggable: false};
+  markerOptions = {draggable: true};
   markerPosition: google.maps.LatLngLiteral;
   zoom = 14;
 
@@ -29,7 +28,7 @@ export class RentItemComponent implements OnInit {
   ngOnInit() {
     this.detailsFormGroup = this.formBuilder.group({
       nameCtrl: ['', Validators.required],
-      photoCtrl: ['', Validators.required]
+      // photoCtrl: ['', Validators.required]
     });
     this.locationFormGroup = this.formBuilder.group({
       locationCtrl: ['', Validators.required]
@@ -61,8 +60,9 @@ export class RentItemComponent implements OnInit {
   //   console.log(this.srcResult);
   // }
 
-  addMarker(event: google.maps.MouseEvent) {
+  addMarker(event: google.maps.IconMouseEvent) {
+    // TODO: get placeId
+    // event.stop();
     this.markerPosition = event.latLng.toJSON();
-    console.log(this.markerPosition);
   }
 }
