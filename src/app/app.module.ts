@@ -30,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { FrontPageComponent } from './front-page/front-page.component';
 import { InputDetailsComponent } from './front-page/input-details/input-details.component';
@@ -91,6 +92,7 @@ import { DateWindowComponent } from './submit/rent-item/date-window/date-window.
     MatStepperModule,
     MatRadioModule,
     MatSelectModule,
+    MatDividerModule,
     CommonModule,
     GoogleMapsModule
   ],

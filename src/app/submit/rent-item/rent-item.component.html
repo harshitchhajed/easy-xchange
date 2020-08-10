@@ -10,7 +10,8 @@
               <input matInput maxlength=50 formControlName="nameCtrl" required #itemName>
               <mat-hint align="end">{{itemName.value.length}} / 50</mat-hint>
             </mat-form-field>
-            <br>
+            
+            <mat-divider class="divide-and-rule"></mat-divider>
 
             <!-- TODO: need to make this work -->
             <mat-label>Upload Photos</mat-label>
@@ -18,6 +19,9 @@
             <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button> -->
             <!-- <input (change)="onFileSelected()" #fileInput type="file" id="file"> -->
             <input #fileInput type="file" id="file">
+
+            <mat-divider class="divide-and-rule"></mat-divider>
+
             <div>
               <button mat-button matStepperNext>Next</button>
             </div>
@@ -31,12 +35,17 @@
               <mat-label>Pickup Address</mat-label>
               <input matInput placeholder="Ex. Braeburn, Orchard Commons" formControlName="locationCtrl" required>
             </mat-form-field>
-            <br>
+            
+            <mat-divider class="divide-and-rule"></mat-divider>
+
             <mat-label>Select the pickup location on the map below</mat-label>
             <google-map height="600px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
               <map-marker [position]="markerPosition"
                 [options]="markerOptions"></map-marker>
             </google-map>
+
+            <mat-divider class="divide-and-rule"></mat-divider>
+
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
@@ -52,6 +61,9 @@
                 <textarea rows=8 matInput formControlName="describeCtrl" required maxlength=500 #describe></textarea>
                 <mat-hint align="end">{{ describe.value.length }} / 500</mat-hint>
               </mat-form-field>
+
+              <mat-divider class="divide-and-rule"></mat-divider>
+
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>
@@ -71,7 +83,9 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <br>
+
+              <mat-divider class="divide-and-rule"></mat-divider>
+
               <h2 class="form-heading">Select your preferred pickup time</h2>
               <mat-form-field class="half-input-size full-padding-right" appearance="outline">
                 <mat-label>From</mat-label>
@@ -81,12 +95,17 @@
                 <mat-label>To</mat-label>
                 <input matInput type="time">
               </mat-form-field>
+
+              <mat-divider class="divide-and-rule"></mat-divider>
+
               <h2 class="form-heading">Select windows of your time availability for the next 3 months</h2>
               <h3 class="form-heading">Add more windows with <mat-icon>add_circle_outline</mat-icon></h3>
               <div *ngFor="let window of windows; let i=index">
                 <app-date-window></app-date-window>
                 <mat-icon *ngIf=" i === windows.length - 1" (click)="addMoreWindows()" class="add-icon">add_circle_outline</mat-icon>
               </div>
+              
+              <mat-divider class="divide-and-rule"></mat-divider>
 
               <div>
                 <button mat-button matStepperPrevious>Back</button>
@@ -112,12 +131,17 @@
                 <mat-hint>Let the renter know if you need any deposit</mat-hint>
               </mat-form-field>
 
+              <mat-divider class="divide-and-rule"></mat-divider>
+
               <h2 class="form-heading">Payment</h2>
               <mat-form-field class="input-size" appearance="outline">
                 <mat-label>Interac Email</mat-label>
                 <input matInput type="text" formControlName="interacCtrl">
                 <mat-hint>You will paid through Interac by the renter</mat-hint>
               </mat-form-field>
+
+              <mat-divider class="divide-and-rule"></mat-divider>
+
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>
@@ -128,6 +152,9 @@
         <mat-step>
           <ng-template matStepLabel>Submit</ng-template>
           <p>You are now done now.</p>
+
+          <mat-divider class="divide-and-rule"></mat-divider>
+          
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>

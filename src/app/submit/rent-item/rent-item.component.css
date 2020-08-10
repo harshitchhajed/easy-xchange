@@ -17,15 +17,15 @@ form {
 }
 
 .input-size {
-    width: 40%;
+    width: 400px;
 }
 
 .half-input-size {
-    width: 18%;
+    width: 175px;
 }
 
 .full-padding-right {
-    padding-right: 4%;
+    padding-right: 50px;
 }
 
 .radio-group {
@@ -40,4 +40,9 @@ form {
 
 .add-icon:hover {
     cursor: pointer;
+}
+
+.divide-and-rule {
+    margin: 1% 0 3% 0;
+    width: 90%;
 }
