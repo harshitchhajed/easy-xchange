@@ -1,9 +1,9 @@
 <div class="container">
     <mat-horizontal-stepper labelPosition="bottom" #stepper>
 
-        <mat-step [stepControl]="detailsFormGroup" errorMessage="Name is required.">
+        <mat-step [stepControl]="detailsFormGroup">
           <form [formGroup]="detailsFormGroup">
-            <ng-template matStepLabel>Name and Photos</ng-template>
+            <ng-template matStepLabel>What is it?</ng-template>
             
             <mat-form-field class="input-size" appearance="outline">
               <mat-label>Item Name</mat-label>
@@ -24,7 +24,7 @@
           </form>
         </mat-step>
 
-        <mat-step [stepControl]="locationFormGroup" errorMessage="Address is required.">
+        <mat-step [stepControl]="locationFormGroup">
           <form [formGroup]="locationFormGroup">
             <ng-template matStepLabel>Preferred Pickup Location</ng-template>
             <mat-form-field class="input-size" appearance="outline">
@@ -44,7 +44,7 @@
           </form>
         </mat-step>
 
-        <mat-step [stepControl]="describeFormGroup" errorMessage="Description is required.">
+        <mat-step [stepControl]="describeFormGroup">
             <form [formGroup]="describeFormGroup">
               <ng-template matStepLabel>A Short and Fitting Description</ng-template>
               <mat-form-field class="input-size" appearance="outline">
@@ -59,7 +59,7 @@
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="timingsFormGroup" errorMessage="Timings are required.">
+        <mat-step [stepControl]="timingsFormGroup">
             <form [formGroup]="timingsFormGroup">
               <ng-template matStepLabel>Times that suit you</ng-template>
               
@@ -83,7 +83,6 @@
               </mat-form-field>
               <h2 class="form-heading">Select windows of your time availability for the next 3 months</h2>
               <h3 class="form-heading">Add more windows with <mat-icon>add_circle_outline</mat-icon></h3>
-              <h3 class="form-heading">You can leave unused windows blank</h3>
               <div *ngFor="let window of windows; let i=index">
                 <app-date-window></app-date-window>
                 <mat-icon *ngIf=" i === windows.length - 1" (click)="addMoreWindows()" class="add-icon">add_circle_outline</mat-icon>
@@ -96,12 +95,28 @@
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="moneyFormGroup" errorMessage="Price and Payment are required.">
+        <mat-step [stepControl]="moneyFormGroup">
             <form [formGroup]="moneyFormGroup">
+              <h2 class="form-heading">Pricing</h2>
               <ng-template matStepLabel>Pricing</ng-template>
-              <mat-form-field>
+              <mat-form-field class="half-input-size full-padding-right" appearance="outline">
                 <mat-label>Price in CAD</mat-label>
-                <input matInput placeholder="5" formControlName="priceCtrl" required>
+                <span matPrefix>CA$ &nbsp;</span>
+                <input matInput type="number" formControlName="priceCtrl" required>
+              </mat-form-field>
+
+              <mat-form-field class="half-input-size" appearance="outline">
+                <mat-label>Deposit, if any</mat-label>
+                <span matPrefix>CA$ &nbsp;</span>
+                <input matInput type="number" formControlName="depositCtrl">
+                <mat-hint>Let the renter know if you need any deposit</mat-hint>
+              </mat-form-field>
+
+              <h2 class="form-heading">Payment</h2>
+              <mat-form-field class="input-size" appearance="outline">
+                <mat-label>Interac Email</mat-label>
+                <input matInput type="text" formControlName="interacCtrl">
+                <mat-hint>You will paid through Interac by the renter</mat-hint>
               </mat-form-field>
               <div>
                 <button mat-button matStepperPrevious>Back</button>

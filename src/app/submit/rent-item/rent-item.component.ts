@@ -49,7 +49,9 @@ export class RentItemComponent implements OnInit {
       timeCtrl: ['', Validators.required]
     });
     this.moneyFormGroup = this.formBuilder.group({
-      priceCtrl: ['', Validators.required]
+      priceCtrl: ['', Validators.required],
+      depositCtrl: [''],
+      interacCtrl: ['', [Validators.required, Validators.email]]
     });
   }
 
