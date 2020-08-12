@@ -103,7 +103,7 @@
               <h3 class="form-heading">Add more windows with <mat-icon>add_circle_outline</mat-icon></h3>
               <div *ngFor="let window of windows; let i=index">
                 <app-date-window (validity)="maintainValids(i, $event)"></app-date-window>
-                <mat-icon *ngIf=" i === windows.length - 1" (click)="addMoreWindows()" class="add-icon">add_circle_outline</mat-icon>
+                <mat-icon *ngIf="i === windows.length - 1" (click)="addMoreWindows()" class="add-icon">add_circle_outline</mat-icon>
               </div>
               
               <mat-divider class="divide-and-rule"></mat-divider>

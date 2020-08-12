@@ -30,7 +30,7 @@ export class RentItemComponent implements OnInit {
   // for radio buttons in timings
   advanceNotice: string;
   notices: string[] = ['Same Day', '1 Day', '2 Days', '3 Days'];
-  valids = ['valid'];
+  valids = [true];
 
   // for date windows in Timing
   windows = [1];
@@ -41,24 +41,25 @@ export class RentItemComponent implements OnInit {
 
   ngOnInit() {
     this.detailsFormGroup = this.formBuilder.group({
-      nameCtrl: ['', Validators.required],
+      nameCtrl: [null, Validators.required],
       // photoCtrl: ['', Validators.required]
     });
     this.locationFormGroup = this.formBuilder.group({
-      locationCtrl: ['', Validators.required]
+      locationCtrl: [null, Validators.required]
     });
     this.describeFormGroup = this.formBuilder.group({
-      describeCtrl: ['', Validators.required]
+      describeCtrl: [null, Validators.required]
     });
     this.timingsFormGroup = this.formBuilder.group({
-      noticeTimeCtrl: ['', Validators.required],
-      fromTimeCtrl: ['', Validators.required],
-      toTimeCtrl: ['', Validators.required]
+      noticeTimeCtrl: [null, Validators.required],
+      fromTimeCtrl: [null, Validators.required],
+      toTimeCtrl: [null, Validators.required],
+      windowsCtrl: [null]
     });
     this.moneyFormGroup = this.formBuilder.group({
-      priceCtrl: ['', Validators.required],
-      depositCtrl: [''],
-      interacCtrl: ['', [Validators.required, Validators.email]]
+      priceCtrl: [null, Validators.required],
+      depositCtrl: [null],
+      interacCtrl: [null, [Validators.required, Validators.email]]
     });
   }
 
@@ -70,7 +71,7 @@ export class RentItemComponent implements OnInit {
 
   addMoreWindows() {
     this.windows.push(this.windows[-1] + 1);
-    this.valids.push('valid');
+    this.valids.push(true);
   }
 
   submitStepper() {
@@ -106,6 +107,7 @@ export class RentItemComponent implements OnInit {
           console.log(`The following error occured ${error}`);
         });
     } else {
+      console.log(this.timingsFormGroup.controls.windowsCtrl);
       alert('Invalid form entries!');
     }
   }
@@ -120,10 +122,8 @@ export class RentItemComponent implements OnInit {
     }
   }
 
-  maintainValids(index: number, event: string) {
+  maintainValids(index: number, event: boolean) {
     this.valids[index] = event;
-    console.log(this.valids);
-    console.log(event);
   }
 
 }
