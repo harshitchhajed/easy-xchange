@@ -30,6 +30,7 @@ export class RentItemComponent implements OnInit {
   // for radio buttons in timings
   advanceNotice: string;
   notices: string[] = ['Same Day', '1 Day', '2 Days', '3 Days'];
+  valids = ['valid'];
 
   // for date windows in Timing
   windows = [1];
@@ -69,6 +70,7 @@ export class RentItemComponent implements OnInit {
 
   addMoreWindows() {
     this.windows.push(this.windows[-1] + 1);
+    this.valids.push('valid');
   }
 
   submitStepper() {
@@ -116,6 +118,12 @@ export class RentItemComponent implements OnInit {
       const task = ref.put(file);
       console.log(`done-${i}`);
     }
+  }
+
+  maintainValids(index: number, event: string) {
+    this.valids[index] = event;
+    console.log(this.valids);
+    console.log(event);
   }
 
 }

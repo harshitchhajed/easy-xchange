@@ -1,5 +1,5 @@
-import { FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
@@ -9,19 +9,17 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 })
 export class DateWindowComponent implements OnInit {
   datesFormGroup: FormGroup;
-  startDate: Date = null;
-  endDate: Date = null;
+  @Output() validity = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.datesFormGroup = new FormGroup({
-      startDate: new FormControl('', this.validateStartDate.bind(this)),
-      endDate: new FormControl('', this.validateEndDate.bind(this))
-    });
+      startDate: new FormControl(null),
+      endDate: new FormControl(null)
+    }, this.validateDates.bind(this));
   }
 
-  // TODO: add better filters for start and end
   startFilter(d: Date | null) {
     const date = (d || new Date());
     const now = new Date();
@@ -50,27 +48,40 @@ export class DateWindowComponent implements OnInit {
     return (date <= threeMonthsFuture) && (date >= today);
   }
 
-  onDateChange(type: string, event: MatDatepickerInputEvent<Date>) {
-    if (type === 'start') {
-      this.startDate = event.value;
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    // console.log(this.datesFormGroup.get('startDate'));
+    if (this.datesFormGroup.valid) {
+      this.validity.emit('valid');
     } else {
-      this.endDate = event.value;
+      this.validity.emit('invalid');
     }
-
   }
 
-  validateStartDate(control: FormControl): {[s: string]: boolean} {
-    if (this.endDate == null || control.value > this.endDate) {
+  // validateStartDate(control: FormControl): {[s: string]: boolean} {
+  //   if (this.endDate == null) {
+  //     return null;
+  //   } else if (control.value > this.endDate) {
+  //     return {invalidDates: true};
+  //   }
+  //   return null;
+  // }
+
+  // validateEndDate(control: FormControl): {[s: string]: boolean} {
+  //   if (this.startDate == null || this.endDate == null) {
+  //     return null;
+  //   } else if ((this.startDate > control.value)) {
+  //     console.log(control);
+  //     return {invalidDates: true};
+  //   }
+  //   return null;
+  // }
+
+  validateDates(group: FormGroup): {[s: string]: boolean} {
+    if (group.controls.startDate.value == null || group.controls.endDate.value == null) {
+      return null;
+    } else if (group.controls.startDate.value > group.controls.endDate.value) {
       return {invalidDates: true};
     }
     return null;
   }
-
-  validateEndDate(control: FormControl): {[s: string]: boolean} {
-    if (this.startDate == null || this.startDate > control.value) {
-      return {invalidDates: true};
-    }
-    return null;
-  }
-
 }
