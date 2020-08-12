@@ -3,7 +3,7 @@
 
         <mat-step [stepControl]="detailsFormGroup">
           <form [formGroup]="detailsFormGroup">
-            <ng-template matStepLabel>What is it?</ng-template>
+            <ng-template matStepLabel>Quick Idea</ng-template>
             
             <h2 class="form-heading">Give Me Some Name</h2>
             <mat-form-field class="input-size" appearance="outline">
@@ -15,11 +15,10 @@
             <mat-divider class="divide-and-rule"></mat-divider>
 
             <!-- TODO: need to make this work -->
-            <h2 class="form-heading">Upload Photos</h2>
-            <br>
+            <h2 class="form-heading">Upload All Photos</h2>
             <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button> -->
             <!-- <input (change)="onFileSelected()" #fileInput type="file" id="file"> -->
-            <input #fileInput type="file" id="file">
+            <input #fileInput type="file" multiple>
 
             <mat-divider class="divide-and-rule"></mat-divider>
 
@@ -80,7 +79,7 @@
               <h2 class="form-heading">Notice Me</h2>
               <mat-form-field class="input-size" appearance="outline">
                 <mat-label>How much notice do you need?</mat-label>
-                <mat-select>
+                <mat-select formControlName="noticeTimeCtrl">
                   <mat-option *ngFor="let notice of notices" [value]="notice">
                     {{ notice }}
                   </mat-option>
@@ -92,11 +91,11 @@
               <h2 class="form-heading">Select your preferred pickup time</h2>
               <mat-form-field class="half-input-size full-padding-right" appearance="outline">
                 <mat-label>From</mat-label>
-                <input matInput type="time">
+                <input matInput type="time" formControlName="fromTimeCtrl">
               </mat-form-field>
               <mat-form-field class="half-input-size" appearance="outline">
                 <mat-label>To</mat-label>
-                <input matInput type="time">
+                <input matInput type="time" formControlName="toTimeCtrl">
               </mat-form-field>
 
               <mat-divider class="divide-and-rule"></mat-divider>
@@ -160,7 +159,7 @@
 
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button matStepperNext (click)="submitStepper()">Submit</button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>

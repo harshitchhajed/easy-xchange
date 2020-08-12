@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-rent-item',
@@ -29,10 +30,10 @@ export class RentItemComponent implements OnInit {
   advanceNotice: string;
   notices: string[] = ['Same Day', '1 Day', '2 Days', '3 Days'];
 
-  // for windows in Timing
+  // for date windows in Timing
   windows = [1];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore) {}
 
   ngOnInit() {
     this.detailsFormGroup = this.formBuilder.group({
@@ -41,12 +42,15 @@ export class RentItemComponent implements OnInit {
     });
     this.locationFormGroup = this.formBuilder.group({
       locationCtrl: ['', Validators.required]
+      // markerCtrl: ['', customValidator]
     });
     this.describeFormGroup = this.formBuilder.group({
       describeCtrl: ['', Validators.required]
     });
     this.timingsFormGroup = this.formBuilder.group({
-      timeCtrl: ['', Validators.required]
+      noticeTimeCtrl: ['', Validators.required],
+      fromTimeCtrl: ['', Validators.required],
+      toTimeCtrl: ['', Validators.required]
     });
     this.moneyFormGroup = this.formBuilder.group({
       priceCtrl: ['', Validators.required],
@@ -79,5 +83,42 @@ export class RentItemComponent implements OnInit {
 
   addMoreWindows() {
     this.windows.push(this.windows[-1] + 1);
+  }
+
+  submitStepper() {
+    if (this.detailsFormGroup.valid
+          && this.locationFormGroup.valid
+          && this.describeFormGroup.valid
+          && this.timingsFormGroup.valid
+          && this.moneyFormGroup.valid) {
+
+            this.firestore.collection('/items').add({
+              name: this.detailsFormGroup.value.nameCtrl,
+              location: this.locationFormGroup.value.locationCtrl,
+              description: this.describeFormGroup.value.describeCtrl,
+              time: {
+                notice: this.timingsFormGroup.value.noticeTimeCtrl,
+                pickupFrom: this.timingsFormGroup.value.fromTimeCtrl,
+                pickupUntil: this.timingsFormGroup.value.toTimeCtrl
+              },
+              money: {
+                ratePerHour: this.moneyFormGroup.value.priceCtrl,
+                deposit: this.moneyFormGroup.value.depositCtrl,
+                InteracEmail: this.moneyFormGroup.value.interacCtrl
+              }
+            })
+            .then((docRef) => {
+              console.log(`Successfully posted with id ${docRef.id}`);
+            })
+            .catch((error) => {
+              console.log(`The following error occured ${error}`);
+            });
+            // console.log(this.detailsFormGroup.value.nameCtrl);
+            // do firestore stuff, success routing
+    } else {
+      console.log(`Form not valid`);
+    }
+
+
   }
 }
