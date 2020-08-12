@@ -122,12 +122,14 @@ export class RentItemComponent implements OnInit {
     }
   }
 
-  uploadPhotos(event) {
-    const file = event.target.files[0];
-    const filePath = 'something';
-    const ref = this.storage.ref(filePath);
-    const task = ref.put(file);
-    console.log('done');
+  uploadPhotos(event: any) {
+    for (let i = 0; i < event.target.files.length; i++) {
+      const file = event.target.files[i];
+      const filePath = `userid/${i}`;
+      const ref = this.storage.ref(filePath);
+      const task = ref.put(file);
+      console.log(`done-${i}`);
+    }
   }
 
 }
