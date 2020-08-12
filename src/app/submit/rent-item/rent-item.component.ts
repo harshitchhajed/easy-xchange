@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-rent-item',
@@ -33,7 +34,9 @@ export class RentItemComponent implements OnInit {
   // for date windows in Timing
   windows = [1];
 
-  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore) {}
+  constructor(private formBuilder: FormBuilder,
+              private firestore: AngularFirestore,
+              private storage: AngularFireStorage) {}
 
   ngOnInit() {
     this.detailsFormGroup = this.formBuilder.group({
@@ -87,38 +90,44 @@ export class RentItemComponent implements OnInit {
 
   submitStepper() {
     if (this.detailsFormGroup.valid
-          && this.locationFormGroup.valid
-          && this.describeFormGroup.valid
-          && this.timingsFormGroup.valid
-          && this.moneyFormGroup.valid) {
+      && this.locationFormGroup.valid
+      && this.describeFormGroup.valid
+      && this.timingsFormGroup.valid
+      && this.moneyFormGroup.valid) {
 
-            this.firestore.collection('/items').add({
-              name: this.detailsFormGroup.value.nameCtrl,
-              location: this.locationFormGroup.value.locationCtrl,
-              description: this.describeFormGroup.value.describeCtrl,
-              time: {
-                notice: this.timingsFormGroup.value.noticeTimeCtrl,
-                pickupFrom: this.timingsFormGroup.value.fromTimeCtrl,
-                pickupUntil: this.timingsFormGroup.value.toTimeCtrl
-              },
-              money: {
-                ratePerHour: this.moneyFormGroup.value.priceCtrl,
-                deposit: this.moneyFormGroup.value.depositCtrl,
-                InteracEmail: this.moneyFormGroup.value.interacCtrl
-              }
-            })
-            .then((docRef) => {
-              console.log(`Successfully posted with id ${docRef.id}`);
-            })
-            .catch((error) => {
-              console.log(`The following error occured ${error}`);
-            });
-            // console.log(this.detailsFormGroup.value.nameCtrl);
-            // do firestore stuff, success routing
+      this.firestore.collection('/items').add({
+        name: this.detailsFormGroup.value.nameCtrl,
+        location: this.locationFormGroup.value.locationCtrl,
+        description: this.describeFormGroup.value.describeCtrl,
+        time: {
+          notice: this.timingsFormGroup.value.noticeTimeCtrl,
+          pickupFrom: this.timingsFormGroup.value.fromTimeCtrl,
+          pickupUntil: this.timingsFormGroup.value.toTimeCtrl
+        },
+        money: {
+          ratePerHour: this.moneyFormGroup.value.priceCtrl,
+          deposit: this.moneyFormGroup.value.depositCtrl,
+          interacEmail: this.moneyFormGroup.value.interacCtrl
+        }
+      })
+        .then((docRef) => {
+          console.log(`Successfully posted with id ${docRef.id}`);
+          // add to users collection, success routing
+        })
+        .catch((error) => {
+          console.log(`The following error occured ${error}`);
+        });
     } else {
       console.log(`Form not valid`);
     }
-
-
   }
+
+  uploadPhotos(event) {
+    const file = event.target.files[0];
+    const filePath = 'something';
+    const ref = this.storage.ref(filePath);
+    const task = ref.put(file);
+    console.log('done');
+  }
+
 }
