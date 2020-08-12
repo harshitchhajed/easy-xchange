@@ -1,12 +1,14 @@
-<mat-form-field appearance="outline" class="half-input-size full-padding-right" (click)="startPicker.open()">
-    <mat-label>Start Date</mat-label>
-    <input matInput [matDatepickerFilter]="startFilter" [matDatepicker]="startPicker">
-    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-    <mat-datepicker #startPicker></mat-datepicker>
-</mat-form-field>
-<mat-form-field appearance="outline" class="half-input-size half-padding-right" (click)="endPicker.open()">
-    <mat-label>End Date</mat-label>
-    <input matInput [matDatepickerFilter]="endFilter" [matDatepicker]="endPicker">
-    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-    <mat-datepicker #endPicker></mat-datepicker>
-</mat-form-field>
+<form [formGroup]="datesFormGroup" class="form-inline">
+    <mat-form-field appearance="outline" class="half-input-size full-padding-right" (click)="startPicker.open()">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepickerFilter]="startFilter" [matDatepicker]="startPicker" (dateChange)="onDateChange('start', $event)" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="half-input-size half-padding-right" (click)="endPicker.open()">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepickerFilter]="endFilter" [matDatepicker]="endPicker" (dateChange)="onDateChange('end', $event)" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+</form>

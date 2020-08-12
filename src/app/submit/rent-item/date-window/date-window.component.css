@@ -1,3 +1,6 @@
+.form-inline {
+    display: inline;
+}
 
 .half-input-size {
     width: 175px;

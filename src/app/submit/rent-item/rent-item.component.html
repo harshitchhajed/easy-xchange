@@ -41,7 +41,7 @@
             <h2 class="form-heading">Select the pickup location on the map below</h2>
             <google-map height="600px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
               <map-marker [position]="markerPosition"
-                [options]="markerOptions"></map-marker>
+                [options]="markerOptions" ></map-marker>
             </google-map>
 
             <mat-divider class="divide-and-rule"></mat-divider>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -24,7 +24,7 @@ export class RentItemComponent implements OnInit {
   // For Google Maps in location
   center = {lat: 49.26372754901676, lng: -123.20738746163161};
   markerOptions = {draggable: true};
-  markerPosition: google.maps.LatLngLiteral;
+  markerPosition: google.maps.LatLngLiteral = null;
   zoom = 14;
 
   // for radio buttons in timings
@@ -45,7 +45,6 @@ export class RentItemComponent implements OnInit {
     });
     this.locationFormGroup = this.formBuilder.group({
       locationCtrl: ['', Validators.required]
-      // markerCtrl: ['', customValidator]
     });
     this.describeFormGroup = this.formBuilder.group({
       describeCtrl: ['', Validators.required]
@@ -62,22 +61,6 @@ export class RentItemComponent implements OnInit {
     });
   }
 
-  // onFileSelected() {
-  //   const inputNode: any = document.querySelector('#file');
-
-  //   if (typeof (FileReader) !== 'undefined') {
-  //     const reader = new FileReader();
-
-  //     reader.onload = (e: any) => {
-  //       this.srcResult = e.target.result;
-  //     };
-
-  //     reader.readAsArrayBuffer(inputNode.files[0]);
-  //   }
-
-  //   console.log(this.srcResult);
-  // }
-
   addMarker(event: google.maps.IconMouseEvent) {
     // TODO: get placeId
     // event.stop();
@@ -89,7 +72,10 @@ export class RentItemComponent implements OnInit {
   }
 
   submitStepper() {
-    if (this.detailsFormGroup.valid
+
+    if (this.markerPosition === null) {
+      alert('Pin a location on the map in the Location Section!');
+    } else if (this.detailsFormGroup.valid
       && this.locationFormGroup.valid
       && this.describeFormGroup.valid
       && this.timingsFormGroup.valid
@@ -118,7 +104,7 @@ export class RentItemComponent implements OnInit {
           console.log(`The following error occured ${error}`);
         });
     } else {
-      console.log(`Form not valid`);
+      alert('Invalid form entries!');
     }
   }
 
