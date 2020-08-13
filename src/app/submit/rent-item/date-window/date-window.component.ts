@@ -49,7 +49,6 @@ export class DateWindowComponent implements OnInit {
   }
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
-    console.log(this.datesFormGroup);
     this.validity.emit({
       validity:  this.datesFormGroup.valid,
       startDate: this.datesFormGroup.controls.startDate.value,

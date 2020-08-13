@@ -81,7 +81,7 @@
               <mat-form-field class="input-size" appearance="outline">
                 <mat-label>How much notice do you need?</mat-label>
                 <mat-select formControlName="noticeTimeCtrl">
-                  <mat-option *ngFor="let notice of notices" [value]="notice">
+                  <mat-option *ngFor="let notice of notices" [value]="notice[0]">
                     {{ notice }}
                   </mat-option>
                 </mat-select>

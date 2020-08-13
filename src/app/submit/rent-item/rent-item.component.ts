@@ -89,7 +89,7 @@ export class RentItemComponent implements OnInit {
 
   generateTimeAvailabilty() {
 
-    const availability = [];
+    const availability = {};
 
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -103,9 +103,7 @@ export class RentItemComponent implements OnInit {
     // 86400000 (1000*60*60*24) is number of milliseconds in one day
     for (let loopTime = today.getTime(); loopTime < threeMonthsFuture.getTime(); loopTime += 86400000) {
       const loopDay = new Date(loopTime);
-      availability.push({
-        [loopDay.toLocaleDateString()]: this.isAvailable(loopDay)
-      });
+      availability[loopDay.toLocaleDateString()] = this.isAvailable(loopDay);
     }
 
     return availability;
@@ -128,7 +126,7 @@ export class RentItemComponent implements OnInit {
         location: this.locationFormGroup.value.locationCtrl,
         description: this.describeFormGroup.value.describeCtrl,
         time: {
-          notice: this.timingsFormGroup.value.noticeTimeCtrl,
+          notice: parseInt(this.timingsFormGroup.value.noticeTimeCtrl, 10),
           pickupFrom: this.timingsFormGroup.value.fromTimeCtrl,
           pickupUntil: this.timingsFormGroup.value.toTimeCtrl,
           availability: generatedAvailability
@@ -154,7 +152,6 @@ export class RentItemComponent implements OnInit {
           console.log(`The following error occured ${error}`);
         });
     } else {
-      console.log(this.timingsFormGroup.controls.windowsCtrl);
       alert('Invalid form entries!');
     }
   }
