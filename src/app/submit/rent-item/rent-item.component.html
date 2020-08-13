@@ -17,8 +17,10 @@
             <!-- TODO: need to make this work -->
             <h2 class="form-heading">Upload All Photos</h2>
             <button type="button" mat-raised-button (click)="fileInput.click()" color="primary">Upload Photos</button>
-            <input #fileInput hidden type="file" accept="image/*" multiple (change)="uploadPhotos($event)">
-
+            <input #fileInput hidden type="file" accept="image/*,.HEIC" multiple (change)="uploadPhotos($event)">
+            <mat-label *ngIf="photosEvent !== null">
+              {{ photosEvent.target.files.length }} {{ photosEvent.target.files.length === 1 ? 'file' : 'files' }} attached
+            </mat-label>
             <mat-divider class="divide-and-rule"></mat-divider>
 
             <div>

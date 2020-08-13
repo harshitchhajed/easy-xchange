@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -19,7 +19,9 @@ export class RentItemComponent implements OnInit {
   describeFormGroup: FormGroup;
   timingsFormGroup: FormGroup;
   moneyFormGroup: FormGroup;
-  // srcResult: any;
+
+  // saved photos event
+  photosEvent: any = null;
 
   // For Google Maps in location
   center = {lat: 49.26372754901676, lng: -123.20738746163161};
@@ -101,6 +103,13 @@ export class RentItemComponent implements OnInit {
       })
         .then((docRef) => {
           console.log(`Successfully posted with id ${docRef.id}`);
+          for (let i = 0; i < this.photosEvent.target.files.length; i++) {
+            const file = this.photosEvent.target.files[i];
+            const filePath = `${docRef.id}/${i}`;
+            const ref = this.storage.ref(filePath);
+            const task = ref.put(file);
+            console.log(`done-${i}`);
+          }
           // add to users collection, success routing
         })
         .catch((error) => {
@@ -113,13 +122,7 @@ export class RentItemComponent implements OnInit {
   }
 
   uploadPhotos(event: any) {
-    for (let i = 0; i < event.target.files.length; i++) {
-      const file = event.target.files[i];
-      const filePath = `userid/${i}`;
-      const ref = this.storage.ref(filePath);
-      const task = ref.put(file);
-      console.log(`done-${i}`);
-    }
+    this.photosEvent = event;
   }
 
   maintainValids(index: number, event: boolean) {
