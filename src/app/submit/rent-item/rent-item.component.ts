@@ -3,6 +3,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { generate } from 'rxjs';
 
 @Component({
   selector: 'app-rent-item',
@@ -32,10 +33,10 @@ export class RentItemComponent implements OnInit {
   // for radio buttons in timings
   advanceNotice: string;
   notices: string[] = ['Same Day', '1 Day', '2 Days', '3 Days'];
-  valids = [true];
 
   // for date windows in Timing
   windows = [1];
+  windowData = [{validity: true, startDate: null, endDate: null}];
 
   constructor(private formBuilder: FormBuilder,
               private firestore: AngularFirestore,
@@ -55,14 +56,14 @@ export class RentItemComponent implements OnInit {
     this.timingsFormGroup = this.formBuilder.group({
       noticeTimeCtrl: [null, Validators.required],
       fromTimeCtrl: [null, Validators.required],
-      toTimeCtrl: [null, Validators.required],
-      windowsCtrl: [null]
+      toTimeCtrl: [null, Validators.required]
     });
     this.moneyFormGroup = this.formBuilder.group({
       priceCtrl: [null, Validators.required],
       depositCtrl: [null],
       interacCtrl: [null, [Validators.required, Validators.email]]
     });
+
   }
 
   addMarker(event: google.maps.IconMouseEvent) {
@@ -73,11 +74,45 @@ export class RentItemComponent implements OnInit {
 
   addMoreWindows() {
     this.windows.push(this.windows[-1] + 1);
-    this.valids.push(true);
+    this.windowData.push({validity: true, startDate: null, endDate: null});
+  }
+
+  isAvailable(loopDay: Date) {
+    for (const dateWindow of this.windowData) {
+      if ((dateWindow.startDate <= loopDay) && (loopDay <= dateWindow.endDate)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  generateTimeAvailabilty() {
+
+    const availability = [];
+
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let threeMonthsFuture: Date;
+    if (now.getMonth() + 3 > 12) {
+      threeMonthsFuture = new Date(now.getFullYear() + 1, now.getMonth() + 3 - 12, now.getDate());
+    } else {
+      threeMonthsFuture = new Date(now.getFullYear(), now.getMonth() + 3, now.getDate());
+    }
+
+    // 86400000 (1000*60*60*24) is number of milliseconds in one day
+    for (let loopTime = today.getTime(); loopTime < threeMonthsFuture.getTime(); loopTime += 86400000) {
+      const loopDay = new Date(loopTime);
+      availability.push({
+        [loopDay.toLocaleDateString()]: this.isAvailable(loopDay)
+      });
+    }
+
+    return availability;
+
   }
 
   submitStepper() {
-
     if (this.markerPosition === null) {
       alert('Pin a location on the map in the Location Section!');
     } else if (this.detailsFormGroup.valid
@@ -86,6 +121,8 @@ export class RentItemComponent implements OnInit {
       && this.timingsFormGroup.valid
       && this.moneyFormGroup.valid) {
 
+      const generatedAvailability = this.generateTimeAvailabilty();
+
       this.firestore.collection('/items').add({
         name: this.detailsFormGroup.value.nameCtrl,
         location: this.locationFormGroup.value.locationCtrl,
@@ -93,7 +130,8 @@ export class RentItemComponent implements OnInit {
         time: {
           notice: this.timingsFormGroup.value.noticeTimeCtrl,
           pickupFrom: this.timingsFormGroup.value.fromTimeCtrl,
-          pickupUntil: this.timingsFormGroup.value.toTimeCtrl
+          pickupUntil: this.timingsFormGroup.value.toTimeCtrl,
+          availability: generatedAvailability
         },
         money: {
           ratePerHour: this.moneyFormGroup.value.priceCtrl,
@@ -125,8 +163,12 @@ export class RentItemComponent implements OnInit {
     this.photosEvent = event;
   }
 
-  maintainValids(index: number, event: boolean) {
-    this.valids[index] = event;
+  maintainWindowDates(index: number, event: any) {
+    this.windowData[index] = event;
+  }
+
+  validateAllWindows(group: FormGroup): {[s: string]: boolean} {
+    return null;
   }
 
 }

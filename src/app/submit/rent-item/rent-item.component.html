@@ -104,7 +104,7 @@
               <h2 class="form-heading">Select windows of your time availability for the next 3 months</h2>
               <h3 class="form-heading">Add more windows with <mat-icon>add_circle_outline</mat-icon></h3>
               <div *ngFor="let window of windows; let i=index">
-                <app-date-window (validity)="maintainValids(i, $event)"></app-date-window>
+                <app-date-window (validity)="maintainWindowDates(i, $event)"></app-date-window>
                 <mat-icon *ngIf="i === windows.length - 1" (click)="addMoreWindows()" class="add-icon">add_circle_outline</mat-icon>
               </div>
               

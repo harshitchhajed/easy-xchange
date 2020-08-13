@@ -9,7 +9,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 })
 export class DateWindowComponent implements OnInit {
   datesFormGroup: FormGroup;
-  @Output() validity = new EventEmitter<boolean>();
+  @Output() validity = new EventEmitter<any>();
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -49,7 +49,12 @@ export class DateWindowComponent implements OnInit {
   }
 
   onDateChange(event: MatDatepickerInputEvent<Date>) {
-    this.validity.emit(this.datesFormGroup.valid);
+    console.log(this.datesFormGroup);
+    this.validity.emit({
+      validity:  this.datesFormGroup.valid,
+      startDate: this.datesFormGroup.controls.startDate.value,
+      endDate:   this.datesFormGroup.controls.endDate.value
+    });
   }
 
   validateDates(group: FormGroup): {[s: string]: boolean} {
