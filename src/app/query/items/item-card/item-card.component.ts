@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./item-card.component.css']
 })
 export class ItemCardComponent implements OnInit {
-  @Input() item: ItemQuery;
+  @Input() item: any;
   staticMapsUrl: any;
   // TODO: remove api key from front-end
   key = 'AIzaSyDzQbg9aIKeeRnzzm7dTkXXjHdhSHNO068';
