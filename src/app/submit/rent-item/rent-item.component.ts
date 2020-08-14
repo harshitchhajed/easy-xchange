@@ -154,13 +154,14 @@ export class RentItemComponent implements OnInit {
 
           const photos: Observable<any>[] = [];
           for (let i = 0; i < this.photosEvent.target.files.length; i++) {
-            const file = this.photosEvent.target.files[0];
+            const file = this.photosEvent.target.files[i];
             const filePath = `${docRef.id}/${i}`;
             const fileRef = this.storage.ref(filePath);
             const task = this.storage.upload(filePath, file);
 
             console.log(`done-${i}`);
             this.uploadPercent = task.percentageChanges();
+
             task.snapshotChanges().pipe(
               finalize(() => {
                 photos.push(fileRef.getDownloadURL());

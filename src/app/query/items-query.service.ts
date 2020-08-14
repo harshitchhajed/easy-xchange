@@ -19,7 +19,7 @@ export class ItemsQueryService {
     // });
     const serverItems = [];
     this.firestore.collection('items', (ref) => {
-      return ref.where('name', '==', 'chair');
+      return ref.where('name', '==', item);
     })
       .get()
       // .pipe(
@@ -28,6 +28,7 @@ export class ItemsQueryService {
       .subscribe(snapshot => {
         snapshot.forEach(doc => {
           this.items.push(doc.data());
+          console.log(this.items);
         });
       });
   }
