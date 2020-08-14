@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-rent-item',
@@ -152,7 +152,7 @@ export class RentItemComponent implements OnInit {
         .then((docRef) => {
           console.log(`Successfully posted with id ${docRef.id}`);
 
-          // let photos: Observable<string>[];
+          const photos: Promise<any>[] = [];
           for (let i = 0; i < this.photosEvent.target.files.length; i++) {
             const file = this.photosEvent.target.files[0];
             const filePath = `${docRef.id}/${i}`;
@@ -161,11 +161,17 @@ export class RentItemComponent implements OnInit {
 
             console.log(`done-${i}`);
             this.uploadPercent = task.percentageChanges();
-            // get notified when the download URL is available
             task.snapshotChanges().pipe(
-              finalize(() => this.downloadURL = fileRef.getDownloadURL())
+              finalize(() => {
+                photos.push(fileRef.getDownloadURL().toPromise());
+                Promise.all(photos)
+                  .then(values => {
+                    console.log(values);
+                  });
+              })
             )
               .subscribe();
+
           }
           // add to users collection, success routing
         })
