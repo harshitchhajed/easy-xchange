@@ -81,7 +81,7 @@
               <mat-form-field class="input-size" appearance="outline">
                 <mat-label>How much notice do you need?</mat-label>
                 <mat-select formControlName="noticeTimeCtrl">
-                  <mat-option *ngFor="let notice of notices" [value]="notice[0]">
+                  <mat-option *ngFor="let notice of notices" [value]="getValue(notice)">
                     {{ notice }}
                   </mat-option>
                 </mat-select>
@@ -157,6 +157,9 @@
           <p>You are now done now.</p>
 
           <mat-divider class="divide-and-rule"></mat-divider>
+
+          <div>{{ uploadPercent | async }}</div>
+          <img [src]="downloadURL | async">{{ downloadURL | async }}
 
           <div>
             <button mat-button matStepperPrevious>Back</button>

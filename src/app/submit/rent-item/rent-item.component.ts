@@ -3,7 +3,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { generate } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rent-item',
@@ -38,6 +39,10 @@ export class RentItemComponent implements OnInit {
   windows = [1];
   windowData = [{validity: true, startDate: null, endDate: null}];
 
+  // submit
+  uploadPercent: any;
+  downloadURL: any;
+
   constructor(private formBuilder: FormBuilder,
               private firestore: AngularFirestore,
               private storage: AngularFireStorage) {}
@@ -64,6 +69,13 @@ export class RentItemComponent implements OnInit {
       interacCtrl: [null, [Validators.required, Validators.email]]
     });
 
+  }
+
+  getValue(notice: string) {
+    if (notice === 'Same Day') {
+      return 0;
+    }
+    return parseInt(notice[0], 10);
   }
 
   addMarker(event: google.maps.IconMouseEvent) {
@@ -126,7 +138,7 @@ export class RentItemComponent implements OnInit {
         location: this.locationFormGroup.value.locationCtrl,
         description: this.describeFormGroup.value.describeCtrl,
         time: {
-          notice: parseInt(this.timingsFormGroup.value.noticeTimeCtrl, 10),
+          notice: this.timingsFormGroup.value.noticeTimeCtrl,
           pickupFrom: this.timingsFormGroup.value.fromTimeCtrl,
           pickupUntil: this.timingsFormGroup.value.toTimeCtrl,
           availability: generatedAvailability
@@ -139,12 +151,21 @@ export class RentItemComponent implements OnInit {
       })
         .then((docRef) => {
           console.log(`Successfully posted with id ${docRef.id}`);
+
+          // let photos: Observable<string>[];
           for (let i = 0; i < this.photosEvent.target.files.length; i++) {
-            const file = this.photosEvent.target.files[i];
+            const file = this.photosEvent.target.files[0];
             const filePath = `${docRef.id}/${i}`;
-            const ref = this.storage.ref(filePath);
-            const task = ref.put(file);
+            const fileRef = this.storage.ref(filePath);
+            const task = this.storage.upload(filePath, file);
+
             console.log(`done-${i}`);
+            this.uploadPercent = task.percentageChanges();
+            // get notified when the download URL is available
+            task.snapshotChanges().pipe(
+              finalize(() => this.downloadURL = fileRef.getDownloadURL())
+            )
+              .subscribe();
           }
           // add to users collection, success routing
         })
