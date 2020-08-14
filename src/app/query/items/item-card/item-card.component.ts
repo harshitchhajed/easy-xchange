@@ -17,9 +17,6 @@ export class ItemCardComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-    this.item.photos = ['https://firebasestorage.googleapis.com/v0/b/easy-xchange.appspot.com/o/0WQuhqBjTdqqj9IssN2g%2F0?alt=media&token=f7c8eb8f-2497-487c-a0c4-39b1fe78e1ca',
-    'https://firebasestorage.googleapis.com/v0/b/easy-xchange.appspot.com/o/0WQuhqBjTdqqj9IssN2g%2F0?alt=media&token=f7c8eb8f-2497-487c-a0c4-39b1fe78e1ca'
-    ];
 
   //   this.staticMapsUrl = `https://maps.googleapis.com/maps/api/staticmap?center=University+of+British+Columbia,Vancouver,BC
   //     &zoom=13

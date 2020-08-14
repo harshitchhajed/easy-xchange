@@ -59,7 +59,7 @@ export class InputDetailsComponent implements OnInit {
           item: this.queryForm.value.query,
           date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
         }});
-        this.itemsService.getItemsFromServer('a', 'b');
+        this.itemsService.getItemsFromServer(this.queryForm.value.query, date.toLocaleDateString());
       } else {
         const checkIn  = new Date(Date.parse(this.queryForm.value.checkIn));
         const checkOut = new Date(Date.parse(this.queryForm.value.checkOut));

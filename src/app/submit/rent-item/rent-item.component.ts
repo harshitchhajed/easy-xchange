@@ -3,7 +3,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize, last } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
 
 @Component({
