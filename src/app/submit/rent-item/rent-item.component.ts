@@ -3,7 +3,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from 'rxjs/operators';
+import { finalize, last } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
 
 @Component({
@@ -41,7 +41,7 @@ export class RentItemComponent implements OnInit {
 
   // submit
   uploadPercent: any;
-  downloadURL: any;
+  photoUrls: string[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private firestore: AngularFirestore,
@@ -152,7 +152,7 @@ export class RentItemComponent implements OnInit {
         .then((docRef) => {
           console.log(`Successfully posted with id ${docRef.id}`);
 
-          const photos: Promise<any>[] = [];
+          const photos: Observable<any>[] = [];
           for (let i = 0; i < this.photosEvent.target.files.length; i++) {
             const file = this.photosEvent.target.files[0];
             const filePath = `${docRef.id}/${i}`;
@@ -163,15 +163,22 @@ export class RentItemComponent implements OnInit {
             this.uploadPercent = task.percentageChanges();
             task.snapshotChanges().pipe(
               finalize(() => {
-                photos.push(fileRef.getDownloadURL().toPromise());
-                Promise.all(photos)
-                  .then(values => {
-                    console.log(values);
-                  });
+                photos.push(fileRef.getDownloadURL());
+                forkJoin(photos).pipe(
+                  finalize(() => {
+                    this.firestore.doc(`/items/${docRef.id}`).set({
+                      photos: this.photoUrls
+                    }, {merge: true});
+                  })
+                )
+                .subscribe(data => {
+                  if (data.length > this.photoUrls.length) {
+                    this.photoUrls = data;
+                  }
+                });
               })
             )
               .subscribe();
-
           }
           // add to users collection, success routing
         })
