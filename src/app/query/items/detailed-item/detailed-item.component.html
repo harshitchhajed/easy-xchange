@@ -1,17 +1,30 @@
-<mat-grid-list cols="4" rowHeight="100px" style="margin: 20px 7%;">
+<mat-grid-list cols="4" rowHeight="100px" class="grid-wrapper">
+    
     <mat-grid-tile colspan=4 rowspan=4>
-        <div style="min-width:100%;">
+        <div class="full-width">
             <mat-grid-list cols="4" rowHeight="100px">
-                <mat-grid-tile *ngFor="let photo of photos" [colspan]="photo.cols" [rowspan]="photo.rows"
-                    style="background-color: #303030; border: none; padding: 1%;">
-                    <img [src]="photo.src" [alt]="docData.name" style="overflow: hidden;">
+                <mat-grid-tile *ngFor="let photo of photos" [colspan]="photo.cols" [rowspan]="photo.rows" class="photo-tile">
+                    <img [src]="photo.src" [alt]="docData.name" class="no-overflow">
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan=3 rowspan=2>Name, Location</mat-grid-tile>
+
+    <mat-grid-tile colspan=3 rowspan=2>
+        <h1>{{ docData.name }}</h1>
+        <br>
+        <h2>{{ docData.location}}</h2>
+    
+    </mat-grid-tile>
+
     <mat-grid-tile colspan=1 rowspan=6>Booking</mat-grid-tile>
-    <mat-grid-tile colspan=3 rowspan=3>Desc</mat-grid-tile>
+
+    <mat-grid-tile colspan=3 rowspan=3>{{ docData.description }}</mat-grid-tile>
+
     <mat-grid-tile colspan=3 rowspan=1>Pickup, Dropoff</mat-grid-tile>
-    <mat-grid-tile colspan=4 rowspan=3>Map</mat-grid-tile>
+
+    <mat-grid-tile colspan=4 rowspan=6>
+        <iframe height="100%" width="100%" class="google-embed-img" frameborder="0" [src]="this.embedMap" allowfullscreen></iframe>
+    </mat-grid-tile>
+
 </mat-grid-list>

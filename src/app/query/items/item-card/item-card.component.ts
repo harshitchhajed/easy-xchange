@@ -11,7 +11,6 @@ export class ItemCardComponent implements OnInit {
   itemData: any;
   itemID: any;
   staticMapsUrl: any;
-  // TODO: remove api key from front-end
   key = 'AIzaSyDzQbg9aIKeeRnzzm7dTkXXjHdhSHNO068';
 
   mapShown = false;

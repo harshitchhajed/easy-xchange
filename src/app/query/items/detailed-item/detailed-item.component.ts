@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detailed-item',
@@ -8,12 +9,19 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./detailed-item.component.css']
 })
 export class DetailedItemComponent implements OnInit {
-  docID: string;
-  docData: any;
+  docID = '';
+  docData: any = {};
+
+  // for photos
   photos: any[] = [];
 
+  // for maps
+  embedMap: any;
+  key = 'AIzaSyDzQbg9aIKeeRnzzm7dTkXXjHdhSHNO068';
+
   constructor(private route: ActivatedRoute,
-              private firestore: AngularFirestore) { }
+              private firestore: AngularFirestore,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.docID = this.route.snapshot.params.docID;
@@ -22,13 +30,12 @@ export class DetailedItemComponent implements OnInit {
       .get().subscribe(snapshot => {
         if (snapshot.exists) {
           this.docData = snapshot.data();
-          console.log(this.docData);
           this.initPhotos();
+          this.initMap();
         } else {
           console.log('404');
         }
       });
-
 
   }
 
@@ -53,6 +60,10 @@ export class DetailedItemComponent implements OnInit {
 
     this.photos = this.photos.slice(0, 5);
 
+  }
+
+  initMap() {
+    this.embedMap = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.google.com/maps/embed/v1/place?key=${this.key}&q=Space+Needle,Seattle+WA`);
   }
 
 }

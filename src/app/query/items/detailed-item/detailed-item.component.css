@@ -1,3 +1,27 @@
+.grid-wrapper {
+    margin: 20px 7%;
+}
+
+.full-width {
+    min-width:100%;
+}
+
+.photo-tile {
+    background-color: black;
+    border: none;
+}
+
+.no-overflow {
+    overflow: hidden;
+}
+
+.google-embed-img {
+    display: block;
+    max-width: 100%;
+    border: none;
+    margin-top: 4%;
+}
+
 mat-grid-tile {
     background: lightblue;
 }
