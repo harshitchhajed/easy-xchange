@@ -19,7 +19,14 @@
     display: block;
     max-width: 100%;
     border: none;
-    border-radius: 25px;
+    border-radius: 35px;
+}
+
+.bottom-line {
+    width: 80%;
+    position: absolute;
+    left: 0px;
+    top: 90%;
 }
 
 /* mat-grid-tile {
@@ -44,3 +51,49 @@
     line-height: 15px;
 }
 
+#item-description {
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 15px;
+}
+
+#expect-heading {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 15px;
+}
+
+.expect-subheading {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 15px;
+}
+
+#expect-timings {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 15px;
+}
+
+.expect-container {
+    position: absolute;
+    top: 65px;
+    width: 50%;
+}
+
+#left-container {
+    left: 0px;
+}
+
+#right-container {
+    right: 0px;
+}

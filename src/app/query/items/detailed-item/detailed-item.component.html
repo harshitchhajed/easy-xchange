@@ -11,15 +11,34 @@
     </mat-grid-tile>
 
     <mat-grid-tile colspan=3 rowspan=2>
-        <div id="item-name">{{ docData.name }}</div>
-        <div id="item-location">{{ docData.location}}</div>
+        <span id="item-name">{{ docData.name }}</span>
+        <span id="item-location" class="bottom-line">
+            {{ docData.location}}
+        </span>
+        <mat-divider class="bottom-line"></mat-divider>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan=1 rowspan=6>Booking</mat-grid-tile>
+    <mat-grid-tile colspan=1 rowspan=7>Booking</mat-grid-tile>
 
-    <mat-grid-tile colspan=3 rowspan=3>{{ docData.description }}</mat-grid-tile>
+    <mat-grid-tile colspan=3 rowspan=3 class="bottom-line">
+        <div id="item-description">
+            {{ docData.description }}
+        </div>
+    </mat-grid-tile>
 
-    <mat-grid-tile colspan=3 rowspan=1>Pickup, Dropoff</mat-grid-tile>
+    <mat-grid-tile colspan=3 rowspan=2>
+        <span id="expect-heading">Things to expect</span>
+        <div>
+            <div class="expect-container" id="left-container">
+                <span class="expect-subheading">Pickup Times</span>
+                <span id="expect-timings">Between {{ docData.time.pickupFrom }} and {{ docData.time.pickupUntil }}</span>
+            </div>
+
+            <div class="expect-container" id="right-container">
+                <span class="expect-subheading">Contact Owner</span>
+            </div>
+        </div>
+    </mat-grid-tile>
 
     <mat-grid-tile colspan=4 rowspan=6>
         <iframe height="100%" width="100%" class="google-embed-img" frameborder="0" [src]="this.embedMap" allowfullscreen></iframe>

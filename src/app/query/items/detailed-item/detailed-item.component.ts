@@ -33,7 +33,6 @@ export class DetailedItemComponent implements OnInit {
           this.initPhotos();
           this.initMap();
 
-          
         } else {
           console.log('404');
         }
