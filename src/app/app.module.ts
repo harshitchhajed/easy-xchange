@@ -67,7 +67,7 @@ import { DetailedItemComponent } from './query/items/detailed-item/detailed-item
     ImageSliderComponent,
     RentItemComponent,
     DateWindowComponent,
-    DetailedItemComponent
+    DetailedItemComponent,
   ],
   imports: [
     BrowserModule,

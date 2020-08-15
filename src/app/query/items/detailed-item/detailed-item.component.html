@@ -1,5 +1,14 @@
-<mat-grid-list cols="4" rowHeight="100px">
-    <mat-grid-tile colspan=4 rowspan=4>Images</mat-grid-tile>
+<mat-grid-list cols="4" rowHeight="100px" style="margin: 20px 7%;">
+    <mat-grid-tile colspan=4 rowspan=4>
+        <div style="min-width:100%;">
+            <mat-grid-list cols="4" rowHeight="100px">
+                <mat-grid-tile *ngFor="let photo of photos" [colspan]="photo.cols" [rowspan]="photo.rows"
+                    style="background-color: #303030; border: none; padding: 1%;">
+                    <img [src]="photo.src" [alt]="docData.name" style="overflow: hidden;">
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </mat-grid-tile>
     <mat-grid-tile colspan=3 rowspan=2>Name, Location</mat-grid-tile>
     <mat-grid-tile colspan=1 rowspan=6>Booking</mat-grid-tile>
     <mat-grid-tile colspan=3 rowspan=3>Desc</mat-grid-tile>
