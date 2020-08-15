@@ -25,9 +25,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
       .get()
       .subscribe(snapshot => {
         snapshot.forEach(doc => {
-          console.log(doc.data());
           this.items.push(doc);
-          console.log(this.items);
         });
       });
   }
