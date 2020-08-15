@@ -9,6 +9,10 @@
     margin-bottom: 0px;
 }
 
+.rounder {
+    border-radius: 25px;
+}
+
 form {
     margin: 0 2%;
 }

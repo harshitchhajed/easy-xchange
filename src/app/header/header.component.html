@@ -20,11 +20,11 @@
       </a>
     </span>
     
-    <span class="nav-span">
+    <span *ngIf="displayOnFrontPage" class="nav-span">
       <a class="nav-link" routerLink="rent-item">Rent an item</a>
     </span>
 
-    <span class="nav-span">
+    <span *ngIf="displayOnFrontPage" class="nav-span">
       <a class="nav-link" href="#">Sublet your home</a>
     </span>
 
