@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-import { HomesQueryService } from './../../query/homes-query.service';
-import { ItemsQueryService } from './../../query/items-query.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +11,7 @@ export class InputDetailsComponent implements OnInit {
   @Input() selectedIndex: number;
   queryForm: FormGroup;
 
-  constructor(private itemsService: ItemsQueryService, private homesService: HomesQueryService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.queryForm = new FormGroup({
@@ -59,7 +56,6 @@ export class InputDetailsComponent implements OnInit {
           item: this.queryForm.value.query,
           date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
         }});
-        this.itemsService.getItemsFromServer(this.queryForm.value.query, date.toLocaleDateString());
       } else {
         const checkIn  = new Date(Date.parse(this.queryForm.value.checkIn));
         const checkOut = new Date(Date.parse(this.queryForm.value.checkOut));

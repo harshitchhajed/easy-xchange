@@ -1,19 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { ItemsQueryService } from '../items-query.service';
-import { ItemQuery } from '../item-query';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css']
 })
-export class ItemsComponent implements OnInit {
-  items: ItemQuery[];
+export class ItemsComponent implements OnInit, OnDestroy {
+  items: any[] = [];
 
-  constructor(private itemsService: ItemsQueryService) { }
+  constructor(private firestore: AngularFirestore,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.items = this.itemsService.getItems();
+
+    // this.items = this.itemsService.getItems();
+    const item = this.route.snapshot.queryParams.item;
+    const date = this.route.snapshot.queryParams.date;
+
+    this.firestore.collection('items', (ref) => {
+      return ref.where('name', '==', item);
+    })
+      .get()
+      .subscribe(snapshot => {
+        snapshot.forEach(doc => {
+          console.log(doc.data());
+          this.items.push(doc);
+          console.log(this.items);
+        });
+      });
   }
 
+  ngOnDestroy() {
+    this.items = [];
+  }
 }
