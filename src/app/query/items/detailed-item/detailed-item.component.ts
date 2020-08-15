@@ -10,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class DetailedItemComponent implements OnInit {
   docID = '';
-  docData: any = {};
+  docData: any;
 
   // for photos
   photos: any[] = [];
@@ -32,11 +32,12 @@ export class DetailedItemComponent implements OnInit {
           this.docData = snapshot.data();
           this.initPhotos();
           this.initMap();
+
+          
         } else {
           console.log('404');
         }
       });
-
   }
 
   initPhotos() {

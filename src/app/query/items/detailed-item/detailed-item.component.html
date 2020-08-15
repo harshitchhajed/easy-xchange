@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="100px" class="grid-wrapper">
+<mat-grid-list *ngIf="docData != null" cols="4" rowHeight="100px" class="grid-wrapper">
     
     <mat-grid-tile colspan=4 rowspan=4>
         <div class="full-width">
@@ -11,10 +11,8 @@
     </mat-grid-tile>
 
     <mat-grid-tile colspan=3 rowspan=2>
-        <h1>{{ docData.name }}</h1>
-        <br>
-        <h2>{{ docData.location}}</h2>
-    
+        <div id="item-name">{{ docData.name }}</div>
+        <div id="item-location">{{ docData.location}}</div>
     </mat-grid-tile>
 
     <mat-grid-tile colspan=1 rowspan=6>Booking</mat-grid-tile>
