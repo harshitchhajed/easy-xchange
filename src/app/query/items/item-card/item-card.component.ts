@@ -8,6 +8,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: any;
+  itemData: any;
+  itemID: any;
   staticMapsUrl: any;
   // TODO: remove api key from front-end
   key = 'AIzaSyDzQbg9aIKeeRnzzm7dTkXXjHdhSHNO068';
@@ -17,6 +19,8 @@ export class ItemCardComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.itemData = this.item.data();
+    this.itemID = this.item.id;
 
   //   this.staticMapsUrl = `https://maps.googleapis.com/maps/api/staticmap?center=University+of+British+Columbia,Vancouver,BC
   //     &zoom=13
@@ -29,4 +33,6 @@ export class ItemCardComponent implements OnInit {
     this.staticMapsUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.google.com/maps/embed/v1/place?key=${this.key}&q=Space+Needle,Seattle+WA`);
 
   }
+
+
 }

@@ -1,23 +1,23 @@
 <mat-card class="card">
     <mat-card-header>
-        <mat-card-title>{{ item.name }}</mat-card-title>
-        <mat-card-subtitle>{{ item.location }}</mat-card-subtitle>
+        <mat-card-title>{{ itemData.name }}</mat-card-title>
+        <mat-card-subtitle>{{ itemData.location }}</mat-card-subtitle>
     </mat-card-header>
     
-    <app-image-slider *ngIf="!mapShown" [slides]="this.item.photos" [name]="item.name"></app-image-slider>
+    <app-image-slider *ngIf="!mapShown" [slides]="this.itemData.photos" [name]="itemData.name"></app-image-slider>
     <iframe *ngIf="mapShown" height="400px" width="320px" class="google-static-img" frameborder="0" style="border:0" [src]="this.staticMapsUrl" allowfullscreen>
     </iframe>
     <!-- <img *ngIf="mapShown" class="google-static-img" [src]="staticMapsUrl" alt="Maps Location"> -->
 
     <mat-card-content>
         <span style="font-weight: 400;">Price: </span>
-        <span style="font-weight: 900;">${{ item.money.ratePerHour }}</span>
+        <span style="font-weight: 900;">${{ itemData.money.ratePerHour }}</span>
         <span style="font-weight: 400;">/hour</span>
     </mat-card-content>
     <mat-card-actions>
       <button *ngIf="!mapShown" mat-button disableRipple=true (click)="mapShown = true;">Find on Map</button>
       <button *ngIf="mapShown" mat-button disableRipple=true (click)="mapShown = false;">See the Post</button>
-      <button mat-button>See More</button>
+      <button mat-button [routerLink]="['/items', this.itemID]">See More</button>
       <button mat-raised-button color="warn">Rent Now</button>
     </mat-card-actions>
 </mat-card>

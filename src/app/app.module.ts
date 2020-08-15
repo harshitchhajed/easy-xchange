@@ -47,6 +47,7 @@ import { ImageSliderComponent } from './query/image-slider/image-slider.componen
 import { environment } from 'src/environments/environment';
 import { RentItemComponent } from './submit/rent-item/rent-item.component';
 import { DateWindowComponent } from './submit/rent-item/date-window/date-window.component';
+import { DetailedItemComponent } from './query/items/detailed-item/detailed-item.component';
 
 
 
@@ -65,7 +66,8 @@ import { DateWindowComponent } from './submit/rent-item/date-window/date-window.
     ItemCardComponent,
     ImageSliderComponent,
     RentItemComponent,
-    DateWindowComponent
+    DateWindowComponent,
+    DetailedItemComponent
   ],
   imports: [
     BrowserModule,
