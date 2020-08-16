@@ -7,9 +7,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { CommonModule } from '@angular/common';
 import { GoogleMapsModule } from '@angular/google-maps';
 
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -79,7 +76,6 @@ import { DetailedItemComponent } from './query/items/detailed-item/detailed-item
     AngularFirestoreModule,
     AngularFireFunctionsModule,
     AngularFireStorageModule,
-    SocialLoginModule,
     MatIconModule,
     MatInputModule,
     MatAutocompleteModule,
@@ -100,26 +96,7 @@ import { DetailedItemComponent } from './query/items/detailed-item/detailed-item
     CommonModule,
     GoogleMapsModule
   ],
-  providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '172126270901-erdkt4d5i89m7t1eauv4qmelhd7ves33.apps.googleusercontent.com'
-            ),
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('635708387067929'),
-          },
-        ],
-      } as SocialAuthServiceConfig,
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

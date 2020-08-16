@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService, SocialUser } from 'angularx-social-login';
-
-import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
-declare var FB: any;
-declare var gapi: any;
 
 @Component({
   selector: 'app-signup',
@@ -11,41 +6,23 @@ declare var gapi: any;
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  user: SocialUser;
   loggedIn: boolean;
 
-  constructor(private authService: SocialAuthService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-    });
    }
 
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+
   }
 
   signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+
   }
 
   signOut(): void {
-    this.authService.signOut();
-  }
 
-  fbSubmitLogin(){
-    // FB.getLoginStatus((response: any) => {   // Called after the JS SDK has been initialized.
-    //   this.statusChangeCallback(response);        // Returns the login status.
-    // });
-
-    console.log('submit login to facebook');
-
-    FB.login((response: any) => {
-      console.log(response);
-      this.statusChangeCallback(response);
-    }, {scope: 'public_profile,email'});
   }
 
   statusChangeCallback(response: any) {  // Called with the results from FB.getLoginStatus().
@@ -59,16 +36,10 @@ export class SignupComponent implements OnInit {
   }
 
   testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', (response: any) => {
-      console.log(response);
-    });
-  }
-
-  fbLogout() {
-    FB.logout((response: any) => {
-      console.log('you were logged out');
-   });
+    // console.log('Welcome!  Fetching your information.... ');
+    // FB.api('/me', (response: any) => {
+    //   console.log(response);
+    // });
   }
 
   onSignIn(googleUser) {
@@ -85,13 +56,6 @@ export class SignupComponent implements OnInit {
     // The ID token you need to pass to your backend:
     const id_token = googleUser.getAuthResponse().id_token;
     console.log('ID Token: ' + id_token);
-  }
-
-  signOutGoogle() {
-    const auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(() => {
-      console.log('User signed out.');
-    });
   }
 
 }
