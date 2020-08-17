@@ -1,33 +1,28 @@
-<h1>Sign Up</h1>
-<div>
-  <p>Upload your government ID or UBC ID?</p>
-  
-  <mat-form-field>
-    <mat-label>Test</mat-label>
-    <input matInput>
-  </mat-form-field>
+<div style="margin: 2% 10%;">
 
-  <button (click)="signInWithFB()">
-    Continue with Facebook
-  </button>
+  <h1>Sign Up</h1>
+  <div>
+    <mat-form-field>
+      <mat-label>Test</mat-label>
+      <input matInput>
+    </mat-form-field>
 
-  <button (click)="signInWithGoogle()">
-    Continue with Google
-  </button>
+    <button (click)="signInWithFB()">
+      Continue with Facebook
+    </button>
 
-  <button (click)="signOut()">
-    Sign out
-  </button>
+    <button (click)="signInWithGoogle()">
+      Continue with Google
+    </button>
 
-</div>
+    <button (click)="signOut()">
+      Sign out
+    </button>
 
-<!-- <img *ngIf="loggedIn" [src]="user.photoUrl">
-<div *ngIf="loggedIn">
-  <h4>{{ user.name }}</h4>
-  <p>{{ user.email }}</p>
-</div> -->
+  </div>
 
-<div>
-  <button mat-button>Cancel</button>
-  <button mat-button cdkFocusInitial>Ok</button>
+  <div>
+    <button mat-button>Cancel</button>
+    <button mat-button cdkFocusInitial>Ok</button>
+  </div>
 </div>
