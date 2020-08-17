@@ -45,6 +45,8 @@ import { environment } from 'src/environments/environment';
 import { RentItemComponent } from './submit/rent-item/rent-item.component';
 import { DateWindowComponent } from './submit/rent-item/date-window/date-window.component';
 import { DetailedItemComponent } from './query/items/detailed-item/detailed-item.component';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 
 
@@ -94,7 +96,9 @@ import { DetailedItemComponent } from './query/items/detailed-item/detailed-item
     MatSelectModule,
     MatDividerModule,
     CommonModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    NgxAuthFirebaseUIModule.forRoot(environment.firebase),
+    MatPasswordStrengthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
