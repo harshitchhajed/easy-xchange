@@ -1,15 +1,15 @@
-<h1 mat-dialog-title>Sign Up</h1>
-<div mat-dialog-content>
-  <p>Upload your government ID or UBC ID?</p>
-  
-  <mat-form-field>
-    <mat-label>Testing</mat-label>
-    <input matInput>
-  </mat-form-field>
-
-</div>
-
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+<div>
+  <h1 mat-dialog-title>Sign In</h1>
+  <div style="margin: 2% auto;" mat-dialog-content>
+    <ngx-auth-firebaseui-providers
+    [providers]="[providers.Google, providers.Facebook]" 
+    layout="column"
+    (onSuccess)="loginSuccess($event)"
+    (onError)="loginError($event)">
+    </ngx-auth-firebaseui-providers>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+  </div>
 </div>

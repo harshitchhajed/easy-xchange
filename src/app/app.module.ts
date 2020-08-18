@@ -36,7 +36,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DonateComponent } from './front-page/donate/donate.component';
 import { FooterComponent } from './footer/footer.component';
 import { DialogPopupComponent } from './header/dialog-popup/dialog-popup.component';
-import { SignupComponent } from './signup/signup.component';
 import { ItemsComponent } from './query/items/items.component';
 import { HomesComponent } from './query/homes/homes.component';
 import { ItemCardComponent } from './query/items/item-card/item-card.component';
@@ -59,7 +58,6 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
     DonateComponent,
     FooterComponent,
     DialogPopupComponent,
-    SignupComponent,
     ItemsComponent,
     HomesComponent,
     ItemCardComponent,

@@ -1,9 +1,9 @@
-mat-chip.signup {
+mat-chip.signin {
     text-align: center;
     margin: 0px;
 }
 
-.signup:hover {
+.signin:hover {
     cursor: pointer;
 }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, Event, NavigationStart } from '@angular/router';
+import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
 
 @Component({
   selector: 'app-header',
@@ -20,16 +21,16 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  // openSignUp() {
-  //   // used to open a dialog box for signup. not used for time being
-  //   const dialogRef = this.dialog.open(DialogPopupComponent, {
-  //     width: '30vw',
-  //     hasBackdrop: true,
-  //     height: '80vh',
-  //   });
+  openSignIn() {
+    // used to open a dialog box for signup. not used for time being
+    const dialogRef = this.dialog.open(DialogPopupComponent, {
+      width: '30vw',
+      hasBackdrop: true,
+      height: '80vh',
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }
