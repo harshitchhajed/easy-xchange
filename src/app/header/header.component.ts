@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, Event, NavigationStart } from '@angular/router';
 import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
+import { LoggedUserService } from '../logged-user.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,9 @@ import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
 export class HeaderComponent implements OnInit {
   displayOnFrontPage = false;
 
-  constructor(public dialog: MatDialog, private router: Router) { }
+  constructor(public dialog: MatDialog,
+              private router: Router,
+              public loggedUser: LoggedUserService) { }
 
   ngOnInit(): void {
     this.router.events.subscribe((event: Event) => {
@@ -23,14 +26,14 @@ export class HeaderComponent implements OnInit {
 
   openSignIn() {
     const dialogRef = this.dialog.open(DialogPopupComponent, {
-      width: '20vw',
+      width: '30vw',
       hasBackdrop: true,
       height: '50vh',
       panelClass: 'rounder-dialog',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    // });
   }
 }

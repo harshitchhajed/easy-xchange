@@ -2,24 +2,27 @@
   <mat-toolbar style="background-color: transparent;">
 
     <a *ngIf="displayOnFrontPage" routerLink="/" class="nav-link">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 4a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-            <path d="M7.5 4h1v9a.5.5 0 0 1-1 0V4z"/>
-            <path fill-rule="evenodd" d="M6.489 12.095a.5.5 0 0 1-.383.594c-.565.123-1.003.292-1.286.472-.302.192-.32.321-.32.339 0 .013.005.085.146.21.14.124.372.26.701.382.655.246 1.593.408 2.653.408s1.998-.162 2.653-.408c.329-.123.56-.258.701-.382.14-.125.146-.197.146-.21 0-.018-.018-.147-.32-.339-.283-.18-.721-.35-1.286-.472a.5.5 0 1 1 .212-.977c.63.137 1.193.34 1.61.606.4.253.784.645.784 1.182 0 .402-.219.724-.483.958-.264.235-.618.423-1.013.57-.793.298-1.855.472-3.004.472s-2.21-.174-3.004-.471c-.395-.148-.749-.336-1.013-.571-.264-.234-.483-.556-.483-.958 0-.537.384-.929.783-1.182.418-.266.98-.47 1.611-.606a.5.5 0 0 1 .595.383z"/>
-        </svg>
-        University of British Columbia
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 4a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+        <path d="M7.5 4h1v9a.5.5 0 0 1-1 0V4z" />
+        <path fill-rule="evenodd"
+          d="M6.489 12.095a.5.5 0 0 1-.383.594c-.565.123-1.003.292-1.286.472-.302.192-.32.321-.32.339 0 .013.005.085.146.21.14.124.372.26.701.382.655.246 1.593.408 2.653.408s1.998-.162 2.653-.408c.329-.123.56-.258.701-.382.14-.125.146-.197.146-.21 0-.018-.018-.147-.32-.339-.283-.18-.721-.35-1.286-.472a.5.5 0 1 1 .212-.977c.63.137 1.193.34 1.61.606.4.253.784.645.784 1.182 0 .402-.219.724-.483.958-.264.235-.618.423-1.013.57-.793.298-1.855.472-3.004.472s-2.21-.174-3.004-.471c-.395-.148-.749-.336-1.013-.571-.264-.234-.483-.556-.483-.958 0-.537.384-.929.783-1.182.418-.266.98-.47 1.611-.606a.5.5 0 0 1 .595.383z" />
+      </svg>
+      University of British Columbia
     </a>
-    
+
     <img *ngIf="!displayOnFrontPage" class="logo-not-first-page" src="assets/ex.png" alt="Logo" routerLink="/">
-    
+
     <span class="fill-remaining-space"></span>
 
     <span class="nav-span">
-      <a class="nav-link" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link" href="#" id="" role="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         CAD
       </a>
     </span>
-    
+
     <span *ngIf="displayOnFrontPage" class="nav-span">
       <a class="nav-link" routerLink="rent-item">Rent an item</a>
     </span>
@@ -28,12 +31,21 @@
       <a class="nav-link" href="#">Sublet your home</a>
     </span>
 
-    <span class="nav-span">
+    <span *ngIf="loggedUser.getUser() == null; else account" class="nav-span">
       <a class="nav-link">
         <mat-chip-list>
-            <mat-chip color="primary" selected class="signin" (click)="openSignIn()">Sign In</mat-chip>
+          <mat-chip color="primary" selected class="signin" (click)="openSignIn()">Sign In</mat-chip>
         </mat-chip-list>
       </a>
     </span>
+
+    <ng-template #account>
+      <span class="nav-span">
+        <a class="nav-link">
+          <img [src]="loggedUser.getUser().photoURL" alt="Profile Photo" class="profile-photo">
+        </a>
+      </span>
+    </ng-template>
+
   </mat-toolbar>
 </div>

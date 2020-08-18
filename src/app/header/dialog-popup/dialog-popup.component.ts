@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth, User } from 'firebase/app';
 import {AuthProvider} from 'ngx-auth-firebaseui';
+import { LoggedUserService } from './../../logged-user.service';
 
 @Component({
   selector: 'app-dialog-popup',
@@ -14,25 +15,17 @@ export class DialogPopupComponent implements OnInit {
   providers = AuthProvider;
 
   constructor(public socialAuth: AngularFireAuth,
-              public dialogRef: MatDialogRef<DialogPopupComponent>) { }
+              public dialogRef: MatDialogRef<DialogPopupComponent>,
+              private loggedUser: LoggedUserService) { }
 
   ngOnInit(): void { }
 
   signInWithGoogle(): void {
-    this.socialAuth.signInWithPopup(new auth.GoogleAuthProvider())
-    .then(result => {
-      console.log(result.user.displayName);
-    });
+    this.socialAuth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
   signInWithFB(): void {
-    this.socialAuth.signInWithPopup(new auth.FacebookAuthProvider())
-    .then(result => {
-      console.log(result.user.displayName);
-    })
-    .catch(reason => {
-      // handle errors like no sign in, account already exists
-    });
+    this.socialAuth.signInWithPopup(new auth.FacebookAuthProvider());
   }
 
   signOut(): void {
@@ -43,6 +36,7 @@ export class DialogPopupComponent implements OnInit {
   }
 
   loginSuccess(user: User) {
+    this.loggedUser.setUser(user);
     this.dialogRef.close();
     console.log(user);
   }
