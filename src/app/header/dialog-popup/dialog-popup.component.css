@@ -1,0 +1,13 @@
+mat-dialog-container.mat-dialog-container {
+    overflow: hidden;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.auth-position {
+    margin: 10% auto;
+}
+
+.text-center {
+    text-align: center;
+}

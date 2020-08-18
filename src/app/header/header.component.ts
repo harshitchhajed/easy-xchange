@@ -22,11 +22,11 @@ export class HeaderComponent implements OnInit {
   }
 
   openSignIn() {
-    // used to open a dialog box for signup. not used for time being
     const dialogRef = this.dialog.open(DialogPopupComponent, {
-      width: '30vw',
+      width: '20vw',
       hasBackdrop: true,
-      height: '80vh',
+      height: '50vh',
+      panelClass: 'rounder-dialog',
     });
 
     dialogRef.afterClosed().subscribe(result => {

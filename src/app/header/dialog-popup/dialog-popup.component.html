@@ -1,15 +1,11 @@
-<div>
+<div class="text-center">
   <h1 mat-dialog-title>Sign In</h1>
-  <div style="margin: 2% auto;" mat-dialog-content>
+  <div mat-dialog-content class="auth-position">
     <ngx-auth-firebaseui-providers
     [providers]="[providers.Google, providers.Facebook]" 
     layout="column"
     (onSuccess)="loginSuccess($event)"
     (onError)="loginError($event)">
     </ngx-auth-firebaseui-providers>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
   </div>
 </div>

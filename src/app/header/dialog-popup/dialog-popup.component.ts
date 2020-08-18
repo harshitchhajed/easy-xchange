@@ -43,14 +43,11 @@ export class DialogPopupComponent implements OnInit {
   }
 
   loginSuccess(user: User) {
+    this.dialogRef.close();
     console.log(user);
   }
 
   loginError(error: any) {
     console.log(error);
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 }
