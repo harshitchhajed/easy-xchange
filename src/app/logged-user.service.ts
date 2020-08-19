@@ -1,5 +1,7 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { User } from 'firebase';
+import { User, auth } from 'firebase/app';
+
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +9,10 @@ import { User } from 'firebase';
 export class LoggedUserService {
   currUser: User;
 
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
 
   getUser() {
-    return this.currUser;
+    return auth().currentUser;
   }
 
   setUser(user: User) {

@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
+import { LoggedUserService } from 'src/app/logged-user.service';
 
 @Component({
   selector: 'app-rent-item',
@@ -45,7 +46,8 @@ export class RentItemComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private firestore: AngularFirestore,
-              private storage: AngularFireStorage) {}
+              private storage: AngularFireStorage,
+              private loggedUser: LoggedUserService) {}
 
   ngOnInit() {
     this.detailsFormGroup = this.formBuilder.group({
@@ -123,7 +125,9 @@ export class RentItemComponent implements OnInit {
   }
 
   submitStepper() {
-    if (this.markerPosition === null) {
+    if (this.loggedUser.getUser() == null) {
+      alert('You must be logged In');
+    } else if (this.markerPosition === null) {
       alert('Pin a location on the map in the Location Section!');
     } else if (this.detailsFormGroup.valid
       && this.locationFormGroup.valid
@@ -147,7 +151,8 @@ export class RentItemComponent implements OnInit {
           ratePerHour: this.moneyFormGroup.value.priceCtrl,
           deposit: this.moneyFormGroup.value.depositCtrl,
           interacEmail: this.moneyFormGroup.value.interacCtrl
-        }
+        },
+        owner_uid: this.loggedUser.getUser().uid,
       })
         .then((docRef) => {
           console.log(`Successfully posted with id ${docRef.id}`);
