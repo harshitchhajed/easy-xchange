@@ -6,6 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable, forkJoin } from 'rxjs';
 import { LoggedUserService } from 'src/app/logged-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rent-item',
@@ -41,13 +42,14 @@ export class RentItemComponent implements OnInit {
   windowData = [{validity: true, startDate: null, endDate: null}];
 
   // submit
-  uploadPercent: any;
+  uploading = false;
   photoUrls: string[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private firestore: AngularFirestore,
               private storage: AngularFireStorage,
-              private loggedUser: LoggedUserService) {}
+              private loggedUser: LoggedUserService,
+              private router: Router) {}
 
   ngOnInit() {
     this.detailsFormGroup = this.formBuilder.group({
@@ -136,6 +138,7 @@ export class RentItemComponent implements OnInit {
       && this.moneyFormGroup.valid) {
 
       const generatedAvailability = this.generateTimeAvailabilty();
+      this.uploading = true;
 
       this.firestore.collection('/items').add({
         name: this.detailsFormGroup.value.nameCtrl,
@@ -158,14 +161,17 @@ export class RentItemComponent implements OnInit {
           console.log(`Successfully posted with id ${docRef.id}`);
 
           const photos: Observable<any>[] = [];
-          for (let i = 0; i < this.photosEvent.target.files.length; i++) {
+          const numberOfPhotos = this.photosEvent.target.files.length;
+          for (let i = 0; i < numberOfPhotos; i++) {
             const file = this.photosEvent.target.files[i];
             const filePath = `${docRef.id}/${i}`;
             const fileRef = this.storage.ref(filePath);
-            const task = this.storage.upload(filePath, file);
-
-            console.log(`done-${i}`);
-            this.uploadPercent = task.percentageChanges();
+            const metadata = {
+              customMetadata: {
+                owner_uid: this.loggedUser.getUser().uid
+              }
+            };
+            const task = this.storage.upload(filePath, file, metadata);
 
             task.snapshotChanges().pipe(
               finalize(() => {
@@ -181,6 +187,7 @@ export class RentItemComponent implements OnInit {
                   if (data.length > this.photoUrls.length) {
                     this.photoUrls = data;
                   }
+                  this.router.navigate(['/']);
                 });
               })
             )
