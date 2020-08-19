@@ -48,6 +48,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { DialogAccountComponent } from './header/dialog-account/dialog-account.component';
 import { BookingCardComponent } from './query/items/booking-card/booking-card.component';
+import { SendMessagePopupComponent } from './query/items/send-message-popup/send-message-popup.component';
 
 
 
@@ -69,6 +70,7 @@ import { BookingCardComponent } from './query/items/booking-card/booking-card.co
     DetailedItemComponent,
     DialogAccountComponent,
     BookingCardComponent,
+    SendMessagePopupComponent,
   ],
   imports: [
     BrowserModule,

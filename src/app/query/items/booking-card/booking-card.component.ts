@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { SendMessagePopupComponent } from '../send-message-popup/send-message-popup.component';
 
 @Component({
   selector: 'app-booking-card',
@@ -12,7 +14,9 @@ export class BookingCardComponent implements OnInit {
   displayDeposit: boolean;
   dateGroup: FormGroup;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -37,6 +41,18 @@ export class BookingCardComponent implements OnInit {
       console.log(404);
       // add 404 routing
     }
+  }
+
+  sendMessage() {
+    const dialogRef = this.dialog.open(SendMessagePopupComponent, {
+      width: '30vw',
+      hasBackdrop: true,
+      height: '55vh',
+      panelClass: 'rounder-dialog',
+      data: {
+        email: 'h.d.chhajed@gmail.com'
+      }
+    });
   }
 
 }
