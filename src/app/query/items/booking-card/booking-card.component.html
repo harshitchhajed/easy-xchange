@@ -1,16 +1,16 @@
 <mat-card class="booking-card">
     <mat-card-header>
-      <mat-card-title>
-          CA$ {{ docData.money.dailyRate }}/Day
-      </mat-card-title>
-      <mat-card-subtitle *ngIf="displayDeposit; else noDeposit">
-        Deposit: CA$ {{ docData.money.deposit }}
-      </mat-card-subtitle>
-      <ng-template #noDeposit>
-        <mat-card-subtitle>
-            No Deposit
+        <mat-card-title>
+            CA$ {{ docData.money.dailyRate }}/Day
+        </mat-card-title>
+        <mat-card-subtitle *ngIf="displayDeposit; else noDeposit">
+            Deposit: CA$ {{ docData.money.deposit }}
         </mat-card-subtitle>
-      </ng-template>
+        <ng-template #noDeposit>
+            <mat-card-subtitle>
+                No Deposit
+            </mat-card-subtitle>
+        </ng-template>
     </mat-card-header>
     <mat-form-field appearance="outline" class="make-space" [formGroup]="dateGroup">
         <mat-label>Date</mat-label>
@@ -20,7 +20,6 @@
     <br>
     <mat-hint style="font-size: 10px;">You won't be charged until you get the rental</mat-hint>
     <mat-card-actions>
-      <button mat-raised-button color="primary" id="reserve-button">Reserve Now</button>
+        <button mat-raised-button color="primary" id="reserve-button">Reserve Now</button>
     </mat-card-actions>
-
-  </mat-card>
+</mat-card>

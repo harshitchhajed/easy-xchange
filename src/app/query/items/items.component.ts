@@ -17,7 +17,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
     // this.items = this.itemsService.getItems();
     const item = this.route.snapshot.queryParams.item;
-    const date = this.route.snapshot.queryParams.date;
+    const date = this.interpretDateFromURL().toLocaleDateString();
 
     this.firestore.collection('items', (ref) => {
       return ref.where('name', '==', item);
@@ -32,5 +32,21 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.items = [];
+  }
+
+  interpretDateFromURL() {
+
+    const dates = this.route.snapshot.queryParams.date.split('-');
+    console.log(dates);
+    try {
+      if (dates.length !== 3) {
+        throw new Error('Incorrect dates length');
+      }
+      return new Date(+dates[0], +dates[1] - 1, +dates[2]);
+    } catch (error) {
+      console.log(404);
+      console.log(error);
+      // add 404 routing
+    }
   }
 }
