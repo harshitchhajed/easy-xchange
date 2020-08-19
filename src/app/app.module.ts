@@ -46,6 +46,7 @@ import { DateWindowComponent } from './submit/rent-item/date-window/date-window.
 import { DetailedItemComponent } from './query/items/detailed-item/detailed-item.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import { DialogAccountComponent } from './header/dialog-account/dialog-account.component';
 
 
 
@@ -65,6 +66,7 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
     RentItemComponent,
     DateWindowComponent,
     DetailedItemComponent,
+    DialogAccountComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth, User } from 'firebase/app';
-import {AuthProvider} from 'ngx-auth-firebaseui';
+import { AuthProvider } from 'ngx-auth-firebaseui';
 import { LoggedUserService } from './../../logged-user.service';
 
 @Component({
@@ -30,9 +30,9 @@ export class DialogPopupComponent implements OnInit {
 
   signOut(): void {
     this.socialAuth.signOut()
-    .then(() => {
-      console.log('user signed out');
-    });
+      .then(() => {
+        console.log('user signed out');
+      });
   }
 
   loginSuccess(user: User) {

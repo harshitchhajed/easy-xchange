@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router, Event, NavigationStart } from '@angular/router';
 import { DialogPopupComponent } from './dialog-popup/dialog-popup.component';
 import { LoggedUserService } from '../logged-user.service';
+import { DialogAccountComponent } from './dialog-account/dialog-account.component';
 
 @Component({
   selector: 'app-header',
@@ -35,5 +36,14 @@ export class HeaderComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log('The dialog was closed');
     // });
+  }
+
+  openAccountInfo() {
+    const dialogRef = this.dialog.open(DialogAccountComponent, {
+      width: '30vw',
+      hasBackdrop: true,
+      height: '55vh',
+      panelClass: 'rounder-dialog',
+    });
   }
 }

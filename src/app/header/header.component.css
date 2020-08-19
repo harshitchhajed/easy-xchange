@@ -40,3 +40,12 @@ mat-chip.signin {
     border-radius: 100px;
     max-height: 40px;
 }
+
+.dropdown:hover {
+    cursor: pointer;
+}
+
+mat-icon {
+    position: relative;
+    top: 50%;
+}
