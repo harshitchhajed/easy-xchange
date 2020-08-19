@@ -7,12 +7,11 @@
     <app-image-slider *ngIf="!mapShown" [slides]="this.itemData.photos" [name]="itemData.name"></app-image-slider>
     <iframe *ngIf="mapShown" height="400px" width="320px" class="google-static-img" frameborder="0" style="border:0" [src]="this.staticMapsUrl" allowfullscreen>
     </iframe>
-    <!-- <img *ngIf="mapShown" class="google-static-img" [src]="staticMapsUrl" alt="Maps Location"> -->
 
     <mat-card-content>
         <span style="font-weight: 400;">Price: </span>
-        <span style="font-weight: 900;">${{ itemData.money.ratePerHour }}</span>
-        <span style="font-weight: 400;">/hour</span>
+        <span style="font-weight: 900;">${{ itemData.money.dailyRate }}</span>
+        <span style="font-weight: 400;">/day</span>
     </mat-card-content>
     <mat-card-actions>
       <button *ngIf="!mapShown" mat-button disableRipple=true (click)="mapShown = true;">Find on Map</button>

@@ -151,7 +151,7 @@ export class RentItemComponent implements OnInit {
           availability: generatedAvailability
         },
         money: {
-          ratePerHour: this.moneyFormGroup.value.priceCtrl,
+          dailyRate: this.moneyFormGroup.value.priceCtrl,
           deposit: this.moneyFormGroup.value.depositCtrl,
           interacEmail: this.moneyFormGroup.value.interacCtrl
         },

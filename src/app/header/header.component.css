@@ -22,7 +22,7 @@ mat-chip.signin {
 }
 
 .nav-link {
-    color: lavender;
+    color: white;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -45,7 +45,7 @@ mat-chip.signin {
     cursor: pointer;
 }
 
-mat-icon {
+.drop-down-arrow {
     position: relative;
     top: 50%;
 }

@@ -21,14 +21,6 @@ export class ItemCardComponent implements OnInit {
     this.itemData = this.item.data();
     this.itemID = this.item.id;
 
-  //   this.staticMapsUrl = `https://maps.googleapis.com/maps/api/staticmap?center=University+of+British+Columbia,Vancouver,BC
-  //     &zoom=13
-  //     &size=320x400
-  //     &maptype=roadmap
-  //     &markers=color:red%7C${this.item.location.locationGeopoint.latitude},${this.item.location.locationGeopoint.longitude}
-  //     &key=${this.key}`;
-  //  }
-
     this.staticMapsUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.google.com/maps/embed/v1/place?key=${this.key}&q=Space+Needle,Seattle+WA`);
 
   }
