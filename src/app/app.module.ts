@@ -47,6 +47,7 @@ import { DetailedItemComponent } from './query/items/detailed-item/detailed-item
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { DialogAccountComponent } from './header/dialog-account/dialog-account.component';
+import { BookingCardComponent } from './query/items/booking-card/booking-card.component';
 
 
 
@@ -67,6 +68,7 @@ import { DialogAccountComponent } from './header/dialog-account/dialog-account.c
     DateWindowComponent,
     DetailedItemComponent,
     DialogAccountComponent,
+    BookingCardComponent,
   ],
   imports: [
     BrowserModule,

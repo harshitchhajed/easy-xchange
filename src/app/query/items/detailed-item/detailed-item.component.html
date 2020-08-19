@@ -18,7 +18,9 @@
         <mat-divider class="bottom-line"></mat-divider>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan=1 rowspan=7>Booking</mat-grid-tile>
+    <mat-grid-tile colspan=1 rowspan=7>
+        <app-booking-card [docData]="docData"></app-booking-card>
+    </mat-grid-tile>
 
     <mat-grid-tile colspan=3 rowspan=3 class="bottom-line">
         <div id="item-description">
