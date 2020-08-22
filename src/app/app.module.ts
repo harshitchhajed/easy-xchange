@@ -29,6 +29,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FrontPageComponent } from './front-page/front-page.component';
 import { InputDetailsComponent } from './front-page/input-details/input-details.component';
@@ -99,6 +100,7 @@ import { SendMessagePopupComponent } from './query/items/send-message-popup/send
     MatRadioModule,
     MatSelectModule,
     MatDividerModule,
+    MatProgressSpinnerModule,
     CommonModule,
     GoogleMapsModule,
     NgxAuthFirebaseUIModule.forRoot(environment.firebase),

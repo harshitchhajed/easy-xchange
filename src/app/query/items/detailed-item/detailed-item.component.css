@@ -29,9 +29,12 @@
     top: 90%;
 }
 
-/* mat-grid-tile {
-    background: lightblue;
-} */
+.spinner-wrapper {
+    display: flex;
+    margin-top: -50vh;
+    align-content: center;
+    justify-content: center;
+}
 
 #item-name {
     position: absolute;

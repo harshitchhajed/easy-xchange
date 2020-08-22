@@ -1,49 +1,55 @@
-<mat-grid-list *ngIf="docData != null" cols="4" rowHeight="100px" class="grid-wrapper">
-    
-    <mat-grid-tile colspan=4 rowspan=4>
-        <div class="full-width">
-            <mat-grid-list cols="4" rowHeight="100px">
-                <mat-grid-tile *ngFor="let photo of photos" [colspan]="photo.cols" [rowspan]="photo.rows" class="photo-tile">
-                    <img [src]="photo.src" [alt]="docData.name" class="no-overflow">
-                </mat-grid-tile>
-            </mat-grid-list>
-        </div>
-    </mat-grid-tile>
+<div *ngIf="!loaded; else detailsGrid" class="spinner-wrapper">
+    <mat-spinner></mat-spinner>
+</div>
 
-    <mat-grid-tile colspan=3 rowspan=2>
-        <span id="item-name">{{ docData.name }}</span>
-        <span id="item-location" class="bottom-line">
-            {{ docData.location}}
-        </span>
-        <mat-divider class="bottom-line"></mat-divider>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan=1 rowspan=7>
-        <app-booking-card [docData]="docData"></app-booking-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan=3 rowspan=3 class="bottom-line">
-        <div id="item-description">
-            {{ docData.description }}
-        </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan=3 rowspan=2>
-        <span id="expect-heading">Things to expect</span>
-        <div>
-            <div class="expect-container" id="left-container">
-                <span class="expect-subheading">Pickup Times</span>
-                <span id="expect-timings">Between {{ docData.time.pickupFrom }} and {{ docData.time.pickupUntil }}</span>
+<ng-template #detailsGrid>
+    <mat-grid-list *ngIf="docData != null" cols="4" rowHeight="100px" class="grid-wrapper">
+        
+        <mat-grid-tile colspan=4 rowspan=4>
+            <div class="full-width">
+                <mat-grid-list cols="4" rowHeight="100px">
+                    <mat-grid-tile *ngFor="let photo of photos" [colspan]="photo.cols" [rowspan]="photo.rows" class="photo-tile">
+                        <img [src]="photo.src" [alt]="docData.name" class="no-overflow">
+                    </mat-grid-tile>
+                </mat-grid-list>
             </div>
+        </mat-grid-tile>
 
-            <div class="expect-container" id="right-container">
-                <span class="expect-subheading">Contact Owner</span>
+        <mat-grid-tile colspan=3 rowspan=2>
+            <span id="item-name">{{ docData.name }}</span>
+            <span id="item-location" class="bottom-line">
+                {{ docData.location}}
+            </span>
+            <mat-divider class="bottom-line"></mat-divider>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan=1 rowspan=7>
+            <app-booking-card [docData]="docData"></app-booking-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan=3 rowspan=3 class="bottom-line">
+            <div id="item-description">
+                {{ docData.description }}
             </div>
-        </div>
-    </mat-grid-tile>
+        </mat-grid-tile>
 
-    <mat-grid-tile colspan=4 rowspan=6>
-        <iframe height="100%" width="100%" class="google-embed-img" frameborder="0" [src]="this.embedMap" allowfullscreen></iframe>
-    </mat-grid-tile>
+        <mat-grid-tile colspan=3 rowspan=2>
+            <span id="expect-heading">Things to expect</span>
+            <div>
+                <div class="expect-container" id="left-container">
+                    <span class="expect-subheading">Pickup Times</span>
+                    <span id="expect-timings">Between {{ docData.time.pickupFrom }} and {{ docData.time.pickupUntil }}</span>
+                </div>
 
-</mat-grid-list>
+                <div class="expect-container" id="right-container">
+                    <span class="expect-subheading">Contact Owner</span>
+                </div>
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan=4 rowspan=6>
+            <iframe height="100%" width="100%" class="google-embed-img" frameborder="0" [src]="this.embedMap" allowfullscreen></iframe>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</ng-template>

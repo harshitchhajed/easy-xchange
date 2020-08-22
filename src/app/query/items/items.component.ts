@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ItemsComponent implements OnInit, OnDestroy {
   items: any[] = [];
+  loaded = false;
 
   constructor(private firestore: AngularFirestore,
               private route: ActivatedRoute) { }
@@ -27,6 +28,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
         snapshot.forEach(doc => {
           this.items.push(doc);
         });
+        this.loaded = true;
       });
   }
 

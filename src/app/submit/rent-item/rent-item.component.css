@@ -2,6 +2,7 @@
     margin-top: 3%;
     margin-left: 1em;
     margin-right: 1em;
+    position: relative;
 }
 
 .form-heading {
@@ -46,4 +47,13 @@ form {
 .divide-and-rule {
     margin: 1% 0 3% 0;
     width: 90%;
+}
+
+.spinner-wrapper {
+    /* display: flex; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* align-content: center; */
+    /* justify-content: center; */
 }

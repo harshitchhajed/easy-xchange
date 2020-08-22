@@ -11,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class DetailedItemComponent implements OnInit {
   docID = '';
   docData: any;
+  loaded = false;
 
   // for photos
   photos: any[] = [];
@@ -28,6 +29,7 @@ export class DetailedItemComponent implements OnInit {
 
     this.firestore.doc(`/items/${this.docID}`)
       .get().subscribe(snapshot => {
+        this.loaded = true;
         if (snapshot.exists) {
           this.docData = snapshot.data();
           this.initPhotos();
