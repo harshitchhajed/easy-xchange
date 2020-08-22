@@ -1,9 +1,33 @@
 .front-container {
     margin: auto;
+    height: 70vh;
+    width: 100%;
+    padding-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    /* background-image: url(src/assets/20200502_110735.JPG); */
+    /* background-size: cover; */
+}
+
+.search-bar {
     width: 70%;
-    margin-top: 30px;
+    margin: 0 auto;
+}
+
+img {
+    height: 5vw;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .title {
-    font-size: 500%;
+    display: inline;
+    font-size: 400%;
 }

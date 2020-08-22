@@ -1,23 +1,20 @@
 <div class="front-container">
 
     <div class="row">
-        <div class="logo-col">
             <img src="assets/ex.png" alt="Easy-Xchange">
-        </div>
-        <div class="title-col">
-            <h1 class="title">Placeholder</h1>
-        </div>
-        
+            <h1 class="title">Easy-Xchange</h1>
     </div>
 
-    <mat-tab-group>
-        <mat-tab label="Find Items">
-            <app-input-details [selectedIndex]="0"></app-input-details>
-        </mat-tab>
-        <mat-tab label="Find Homes">
-            <app-input-details [selectedIndex]="1"></app-input-details>
-        </mat-tab>
-    </mat-tab-group>
+    <div class="search-bar">
+        <mat-tab-group>
+            <mat-tab label="Find Items">
+                <app-input-details [selectedIndex]="0"></app-input-details>
+            </mat-tab>
+            <mat-tab label="Find Homes">
+                <app-input-details [selectedIndex]="1"></app-input-details>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
     
 </div>
 
