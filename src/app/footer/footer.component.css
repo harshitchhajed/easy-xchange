@@ -3,3 +3,29 @@
     margin-left: 5%;
     margin-right: 5%;
 }
+
+.toolbar-bg {
+    background-color: transparent;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.nav-span {
+    padding: 0 1%;
+}
+
+.flex-position {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.footer-links {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline;
+}
