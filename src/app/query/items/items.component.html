@@ -1,11 +1,25 @@
-<div *ngIf="!loaded; else itemsGrid" class="spinner-wrapper">
+<div *ngIf="!loaded; else itemsRes" class="place-center">
     <mat-spinner></mat-spinner>
 </div>
 
-<ng-template #itemsGrid>
-    <mat-grid-list cols=3 rowHeight="700px">
-        <mat-grid-tile *ngFor="let item of items; let i = index">
-            <app-item-card [item]="this.items[i]"></app-item-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+<ng-template #itemsRes>
+    <div *ngIf="items.length === 0; else itemsGrid" class="place-center bg-container">
+        <div class="inner-container">
+            <h3 class="title-font title-position">Oops! No search results found</h3>
+            <div class="paragraph" (click)="searchAll()">
+                Search for all items on this date
+                <mat-icon>arrow_forward_ios</mat-icon>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <ng-template #itemsGrid>
+        <mat-grid-list cols=3 rowHeight="700px">
+            <mat-grid-tile *ngFor="let item of items; let i = index">
+                <app-item-card [item]="this.items[i]"></app-item-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </ng-template>
 </ng-template>

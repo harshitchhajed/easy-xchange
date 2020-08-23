@@ -1,6 +1,49 @@
-.spinner-wrapper {
+.place-center {
     display: flex;
     margin-top: -50vh;
     align-content: center;
     justify-content: center;
+    position: relative;
+}
+
+.bg-container {
+    background-image: url(https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80);
+    background-size: cover;
+    width: 90%;
+    margin: 10vh auto 0 auto;
+    height: 70vh;
+    border-radius: 25px;
+}
+
+.inner-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0 5% 0;
+    padding-top: 15px;
+    padding-bottom: 40px;
+}
+
+.title-font {
+    font-size: 32px;
+    font-weight: 700;
+    color: black;
+}
+
+.title-position {
+    margin-top: 50px;
+}
+
+.paragraph {
+    padding-top: 5%;
+    width: 400px;
+    font-size: 20px;
+    font-weight: 200;
+    color: grey;
+    display: flex;
+    align-content: center;
+}
+
+.paragraph:hover {
+    cursor: pointer;
 }
